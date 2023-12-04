@@ -42,7 +42,8 @@ const GithubProfile = async () => {
   );
 };
 
-const fetchGithubProfile = async () =>
+const fetchGithubProfile = async (): Promise<{ avatar_url: string }> =>
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   fetch(`https://api.github.com/users/${socials.GITHUB_TAG}`).then((r) =>
     r.json(),
   );

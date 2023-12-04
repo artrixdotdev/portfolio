@@ -49,7 +49,7 @@ export const BottomNav = () => {
         }}
         initial="hidden"
         animate="visible"
-        className="flex gap-4 rounded-lg bg-foreground px-4 text-background shadow-2xl"
+        className="flex gap-4 rounded-lg bg-foreground px-4 text-background shadow-2xl shadow-black"
       >
         {NavItems.map((props) => (
           <NavLink key={props.name} {...props} />

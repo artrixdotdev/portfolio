@@ -1,5 +1,5 @@
 "use client";
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Home, Link2, LucideIcon, PenLine } from "lucide-react";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { usePathname } from "next/navigation";
 import useHash from "@/hooks/useHash";
@@ -24,53 +25,78 @@ const navItems: NavLink[] = [
 ];
 
 export const BottomNav = memo(() => {
+  const [isBottom, setIsBottom] = useState(false);
+
+  // Function to check if the user has scrolled to the bottom of the page
+  const checkIfBottom = () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight >= scrollHeight - 200) {
+      setIsBottom(true);
+    } else {
+      setIsBottom(false);
+    }
+  };
+
+  // Effect to add and remove the scroll event listener
+  useEffect(() => {
+    window.addEventListener("scroll", checkIfBottom);
+    return () => {
+      window.removeEventListener("scroll", checkIfBottom);
+    };
+  }, []);
+
   return (
     <AnimatePresence mode="wait">
-      <motion.nav
-        className="fixed bottom-3 flex w-full justify-center self-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 20 }}
-        transition={{ delay: 0.2, staggerChildren: 0.1 }}
-      >
-        <motion.ul
-          className="flex gap-4 rounded-lg bg-foreground px-4 text-background shadow-2xl shadow-black"
-          initial={{ scale: 0.9 }}
-          animate={{ scale: 1 }}
-          transition={{
-            duration: 0.3,
-            type: "spring",
-            damping: 20,
-            stiffness: 200,
-          }}
+      <TooltipProvider>
+        <motion.nav
+          className="fixed bottom-5 flex w-full justify-center self-center"
+          initial={{ opacity: 0, y: 0 }}
+          animate={
+            isBottom
+              ? { x: "25%", opacity: 1, y: 0 }
+              : { x: 0, opacity: 1, y: 0 }
+          }
+          transition={{ delay: 0.2, staggerChildren: 0.1, ease: "circInOut" }}
         >
-          {navItems.map((props) => (
-            <NavLinkItem key={props.name} {...props} />
-          ))}
-        </motion.ul>
-      </motion.nav>
+          <motion.ul
+            className="flex gap-4 rounded-lg bg-foreground px-4 text-background shadow-2xl shadow-black"
+            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+            animate={{ scale: 1, x: 0, opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -50 }}
+            transition={{
+              duration: 0.3,
+              delay: 0.2,
+              type: "spring",
+              damping: 20,
+              stiffness: 200,
+            }}
+          >
+            {navItems.map((props) => (
+              <NavLinkItem key={props.name} {...props} />
+            ))}
+          </motion.ul>
+        </motion.nav>
+      </TooltipProvider>
     </AnimatePresence>
   );
 });
 
-const NavLinkItem = (props: NavLink) => {
+const NavLinkItem = memo((props: NavLink) => {
   const MotionNextLink = motion(Link);
   const path = usePathname();
   const hash = useHash();
-  console.log(hash);
   const isCurrent = props.url === path;
-  console.log(path);
 
   return (
-    <TooltipProvider>
-      <Tooltip>
+    <Tooltip delayDuration={300}>
+      <TooltipTrigger asChild>
         <MotionNextLink
           className={`relative h-full w-full bg-clip-border py-3 transition hover:text-background/80 ${
             isCurrent ? "text-secondary" : ""
           }`}
-          // initial={{ opacity: 0, y: 0 }}
-          // animate={{ opacity: 1, y: 0 }}
-          // exit={{ opacity: 0, y: 0 }}
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 0 }}
           transition={{
             duration: 0.3,
             type: "spring",
@@ -95,6 +121,10 @@ const NavLinkItem = (props: NavLink) => {
               initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}
+              whileHover={{
+                width: "100%",
+                // animationDelay: 3,
+              }}
               transition={{
                 duration: 0.3,
                 type: "spring",
@@ -104,8 +134,10 @@ const NavLinkItem = (props: NavLink) => {
             />
           )}
         </MotionNextLink>
-        <TooltipContent className="mb-5">{props.name}</TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
+      </TooltipTrigger>
+      <TooltipContent className="mb-3 flex self-center px-3 py-2 text-center">
+        {props.name}
+      </TooltipContent>
+    </Tooltip>
   );
-};
+});

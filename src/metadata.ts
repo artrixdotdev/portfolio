@@ -12,4 +12,5 @@ export const socials = {
   OSU_ID: "28730120",
   OSU_USERNAME: "Artrix909",
   ANILIST_USERNAME: "Artrix909",
+  TWITCH_USERNAME: "artrix909",
 };

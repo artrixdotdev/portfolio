@@ -2,11 +2,14 @@ import "@/styles/globals.css";
 import { type Metadata } from "next";
 import { baseMetadata } from "@/metadata";
 import { BottomNav } from "@/components/app/BottomNav";
-import { Inter } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
+import { Ring } from "@/components/app/Ring";
+import { Footer } from "@/components/app/Footer";
 
-const inter = Inter({
+const josefinSans = Josefin_Sans({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-josefin-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -21,12 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`dark font-sans ${inter.variable}`}>
-        <main className="flex min-h-screen w-full flex-col overflow-x-hidden bg-background ">
+    <html
+      lang="en"
+      className="scrollbar-thin scrollbar-thumb-background scrollbar-track-foreground scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
+    >
+      <body className={`dark font-josefin-sans ${josefinSans.variable}`}>
+        <main className="z-10 flex min-h-screen w-full flex-col overflow-hidden overflow-x-hidden bg-background">
           {children}
         </main>
+        <Ring />
         <BottomNav />
+        <Footer />
       </body>
     </html>
   );

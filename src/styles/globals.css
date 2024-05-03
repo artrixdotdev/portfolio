@@ -4,6 +4,12 @@
 
 @layer base {
   :root {
+    --bg-gradient-start: hsla(240, 5.9%, 90%, 1); /* very light gray-blue */
+    --bg-gradient-end: var(--background); /* slightly darker for depth */
+    --bg-overlay-start: rgba(255, 255, 255, 0.1); /* very light white overlay */
+    --bg-overlay-mid: rgba(255, 255, 255, 0.05); /* softer still */
+    --bg-overlay-end: rgba(255, 255, 255, 0.02); /* very light white overlay */
+
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
 
@@ -36,6 +42,31 @@
   }
 
   .dark {
+    --bg-gradient-start: rgb(
+      34,
+      34,
+      36
+    ); /* slightly lighter than --background */
+    --bg-gradient-end: hsla(
+      240,
+      10%,
+      3%,
+      1
+    ); /* almost matching dark background */
+    --bg-overlay-start: rgba(
+      255,
+      255,
+      255,
+      0.05
+    ); /* softer light overlay for dark mode */
+    --bg-overlay-mid: rgba(255, 255, 255, 0.02); /* very soft white overlay */
+    --bg-overlay-end: rgba(
+      0,
+      0,
+      0,
+      0.05
+    ); /* slightly darker overlay for variation */
+
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
 
@@ -63,14 +94,44 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+
+    --scrollbar-corner-radius: 16px !important;
+    --scrollbar-thumb-radius: 16px !important;
+    --scrollbar-track-radius: 16px !important;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    
   }
   body {
     @apply bg-background text-foreground;
   }
+  /* .scrollbar-main {
+    @apply scrollbar-track-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-track-transparent scrollbar-thumb-background;
+  } */
 }
+/* 
+@layer utilities {
+  body {
+    background: linear-gradient(
+        90deg,
+        var(--bg-gradient-start) 0%,
+        hsl(var(--background)) 50%
+      ),
+      radial-gradient(
+        circle at top,
+        var(--bg-overlay-start) 0%,
+        var(--bg-overlay-mid) 50%
+          
+      ),
+      radial-gradient(
+        circle at top,
+        var(--bg-overlay-start) 0%,
+        var(--bg-overlay-end) 31.5% 
+      );
+    background-blend-mode: multiply, screen;
+  }
+} */

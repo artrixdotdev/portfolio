@@ -17,7 +17,7 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
+        link: "text-primary relative !px-1",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -36,20 +36,40 @@ const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+  active?: boolean;
   asChild?: boolean;
 }
-
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    { className, variant, size, active = false, asChild = false, ...props },
+    ref,
+  ) => {
     const Comp = motion(asChild ? Slot : "button");
+    const isLinkVariant = variant === "link";
+
     return (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
+      // @ts-expect-error Not relevent
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size }), className)}
         ref={ref}
+        initial="initial"
+        animate={active ? "active" : "initial"}
+        whileHover="active"
+        whileFocus="active"
         {...props}
-      />
+      >
+        {props.children}
+        {isLinkVariant && (
+          <motion.span
+            className="absolute bottom-0 left-0 h-0.5 rounded-sm bg-current"
+            variants={{
+              initial: { width: 0 },
+              active: { width: "100%" },
+            }}
+            transition={{ duration: 0.3 }}
+          />
+        )}
+      </Comp>
     );
   },
 );

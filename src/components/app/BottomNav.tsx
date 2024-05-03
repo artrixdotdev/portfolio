@@ -36,7 +36,6 @@ export const BottomNav = memo(() => {
       setIsBottom(false);
     }
   };
-
   // Effect to add and remove the scroll event listener
   useEffect(() => {
     window.addEventListener("scroll", checkIfBottom);

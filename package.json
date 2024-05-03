@@ -11,8 +11,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-scroll-area": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.7",
+    "@react-three/drei": "^9.105.5",
+    "@react-three/fiber": "^8.16.2",
     "@t3-oss/env-nextjs": "^0.7.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -22,10 +26,13 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-use-draggable-scroll": "^0.4.7",
     "simplex-noise": "^4.0.1",
     "tailwind-merge": "^2.1.0",
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss-animate": "^1.0.7",
+    "three": "^0.164.1",
+    "vaul": "^0.9.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

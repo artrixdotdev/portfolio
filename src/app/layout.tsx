@@ -15,7 +15,7 @@ const josefinSans = Josefin_Sans({
 export const metadata: Metadata = {
   ...baseMetadata,
 
-  description: "Gamer, producer, and developer all in 1",
+  description: "Gamer, producer, astronomy enthusiast, and developer all in 1",
 };
 
 export default function RootLayout({
@@ -26,12 +26,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className="scrollbar-thin scrollbar-thumb-background scrollbar-track-foreground scrollbar-thumb-rounded-full scrollbar-track-rounded-full"
+      className="scrollbar-track-rounded-full scrollbar-track-rounded-full scrollbar-thin scrollbar-track-transparent scrollbar-thumb-background"
     >
       <body className={`dark font-josefin-sans ${josefinSans.variable}`}>
-        <main className="z-10 flex min-h-screen w-full flex-col overflow-hidden overflow-x-hidden bg-background">
-          {children}
-        </main>
+        {children}
         <Ring />
         <BottomNav />
         <Footer />

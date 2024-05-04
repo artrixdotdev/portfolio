@@ -9,7 +9,7 @@ export const metadata: Metadata = { title: "Home | Artrix" };
 
 export default function Home() {
   return (
-    <main className="z-10 flex w-full flex-col overflow-hidden overflow-x-hidden ">
+    <main className="z-10 flex overflow-x-clip w-full flex-col ">
       <Nav />
       <Hero />
       <Skills />

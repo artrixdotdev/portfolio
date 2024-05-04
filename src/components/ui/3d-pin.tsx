@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/util/styles";
+import { Button } from "./button";
 
 export const PinContainer = ({
   children,
@@ -36,22 +37,24 @@ export const PinContainer = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
-      <div
+      <a
+        target="_blank"
+        href={href}
         style={{
           perspective: "1000px",
           transform: "rotateX(70deg) translateZ(0deg)",
         }}
-        className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 transition-[margin-top] delay-300 hover:mt-4"
       >
         <div
           style={{
             transform: transform,
           }}
-          className="absolute left-1/2 top-1/2 flex  items-start justify-start overflow-hidden  rounded-2xl  border border-border/[0.1] bg-card p-4 shadow-[0_8px_16px_rgb(0_0_0/0.4)] transition duration-700 group-hover/pin:border-border/[0.2]"
+          className="absolute left-1/2 top-1/2 flex h-min w-full  items-start justify-start overflow-hidden  rounded-2xl  border border-border/[0.1] bg-card shadow-[0_8px_16px_rgb(0_0_0/0.4)] transition duration-700 group-hover/pin:border-border/[0.2]"
         >
           <div className={cn(" relative z-50 ", className)}>{children}</div>
         </div>
-      </div>
+      </a>
       <PinPerspective title={title} href={href} />
     </div>
   );
@@ -65,19 +68,13 @@ export const PinPerspective = ({
   href?: string;
 }) => {
   return (
-    <motion.div className="pointer-events-none  z-[60] flex h-80 w-96 items-center justify-center opacity-0 transition duration-500 group-hover/pin:opacity-100">
+    <motion.div className="pointer-events-none  z-[60] -mb-12 flex h-80 w-96 items-center justify-center opacity-0 transition duration-500 group-hover/pin:opacity-100">
       <div className=" inset-0 -mt-7 h-full w-full  flex-none">
         <div className="absolute inset-x-0 top-0  flex justify-center">
-          <a
-            href={href}
-            target={"_blank"}
-            className="relative z-10 flex items-center space-x-2 rounded-full bg-card px-4 py-0.5 ring-1 ring-ring "
-          >
-            <span className="relative z-20 inline-block py-0.5 text-xs font-bold text-foreground">
+          <a href={href} target={"_blank"} className="">
+            <Button className="z-10 rounded-full" variant="default" size="sm">
               {title}
-            </span>
-
-            <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-emerald-400/0 via-emerald-400/90 to-emerald-400/0 transition-opacity duration-500 group-hover/btn:opacity-40"></span>
+            </Button>
           </a>
         </div>
 

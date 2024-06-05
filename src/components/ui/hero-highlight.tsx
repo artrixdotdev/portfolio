@@ -49,7 +49,7 @@ export const HeroHighlight = ({
   const bg = useMotionTemplate`
       radial-gradient(
         500px circle at ${mouseX}px ${mouseY}px,
-        hsl(${hue}, 40%, 15%) 0%,
+        hsl(${hue}, 40%, 50%) 0%,
         transparent 100%
       )
     `;
@@ -57,12 +57,12 @@ export const HeroHighlight = ({
   return (
     <div
       className={cn(
-        "group relative flex h-[40rem] w-full items-center justify-center bg-white dark:bg-black",
+        "group relative flex h-[40rem] w-full items-center justify-center",
         containerClassName,
       )}
       onMouseMove={handleMouseMove}
     >
-      <div className="bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800 pointer-events-none absolute  inset-0" />
+      <div className="pointer-events-none absolute inset-0 bg-dot-thick-neutral-300  dark:bg-dot-thick-neutral-800" />
 
       <motion.div
         className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"

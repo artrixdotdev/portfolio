@@ -2,6 +2,7 @@
   "tailwindCSS.classAttributes": [
     "class",
     "className",
+    "classNames",
     "ngClass",
     "containerClassName"
   ],

@@ -2,7 +2,7 @@
   {
     "name": "Shiroko",
     "url": "https://shiroko.co",
-    "stack": ["Prisma", "Nextjs", "Typescript", "Postgres", ""],
+    "stack": ["Prisma", "Nextjs", "Typescript", "Postgres", "GraphQL"],
     "github": "https://github.com/Ani-Moopa/Moopa",
     "preview": "https://shiroko.co/images/preview.png"
   },

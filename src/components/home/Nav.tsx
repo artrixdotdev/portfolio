@@ -47,7 +47,7 @@ export const Nav = () => {
 
   return (
     <motion.nav
-      className="fixed z-10 hidden w-full justify-end space-x-4 bg-transparent py-4 pr-8 sm:flex"
+      className="fixed z-[500] hidden w-full justify-end space-x-4 bg-transparent py-4 pr-8 sm:flex"
       initial={{ y: 0 }}
       animate={controls}
       transition={{
@@ -92,7 +92,7 @@ export const NavLink = ({
   };
 
   return (
-    <a href={`#${name.toLowerCase()}`} onClick={handleClick}>
+    <a href={`#${name.toLowerCase()}`} onMouseDown={handleClick}>
       <Button variant="link" active={activeSection === name}>
         {name}
       </Button>

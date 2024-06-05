@@ -125,22 +125,62 @@ const skills: Skill[] = [
     confidence: 9,
     link: "https://www.prisma.io",
   },
+
+  {
+    name: "tRPC",
+    Icon: SkillIcons.TPRC,
+    startedUsingAt: new Date("2023"),
+    projectIds: [],
+    confidence: 7,
+    link: "https://trpc.io",
+  },
+  {
+    name: "Drizzle",
+    Icon: SkillIcons.Drizzle,
+    startedUsingAt: new Date("2023"),
+    projectIds: [],
+    confidence: 9,
+    link: "https://orm.drizzle.team",
+  },
+  {
+    name: "Supabase",
+    Icon: SkillIcons.Supabase,
+    startedUsingAt: new Date("2021"),
+    projectIds: [],
+    confidence: 8,
+    link: "https://supabase.com",
+  },
+  {
+    name: "GraphQL",
+    Icon: SkillIcons.GraphQL,
+    startedUsingAt: new Date("2021"),
+    projectIds: [0],
+    confidence: 8,
+    link: "https://supabase.com",
+  },
 ];
 
 export const Skills = () => {
+  const ref =
+    useRef<HTMLDivElement>() as React.MutableRefObject<HTMLInputElement>;
+  const { events } = useDraggable(ref);
   return (
     <section
       id="skills"
-      className="relative h-max min-h-[calc(200vh+28px)] bg-grid-neutral-300/5 md:flex-row"
+      className="relative h-max min-h-[calc(200vh+300px)] bg-grid-neutral-300/5 md:flex-row"
     >
-      <div className="sticky left-0 top-32 z-[500] m-20 flex  w-min flex-col items-start justify-center gap-3 opacity-100">
-        <motion.div className="z-[500]">
+      <div className="sticky left-0 top-32 z-[50] my-8 flex w-full flex-col items-center justify-center gap-3  opacity-100 sm:mx-20 sm:items-start">
+        <motion.div>
           <h4>Technologies</h4>
           <ScrollArea
-            className="z-50  h-min w-[80vw] min-w-48 rounded-md border bg-background p-4 !opacity-90 sm:w-[50vw]"
+            className="z-50 h-min w-[80vw] min-w-48 rounded-md border bg-background p-4 !opacity-95 scrollbar-thin sm:w-[50vw]"
             style={{ maxWidth: "500px" }}
           >
-            <div className="mx-auto grid w-max grid-flow-col-dense gap-3 md:grid-flow-row-dense md:auto-rows-max md:grid-cols-6">
+            <div
+              ref={ref}
+              {...events}
+              className="mx-auto grid w-max grid-flow-col-dense gap-3 md:grid-flow-row-dense md:auto-rows-max md:grid-cols-6"
+            >
               {skills.map((skill, i) => (
                 <div key={i} className="h-min w-min">
                   <Framework skill={skill} />
@@ -148,7 +188,7 @@ export const Skills = () => {
               ))}
             </div>
             <ScrollBar
-              className="m-0.5 p-0.5 md:hidden"
+              className="m-0.5 p-0.5 !opacity-100 md:!hidden "
               orientation="horizontal"
             />
           </ScrollArea>
@@ -193,7 +233,8 @@ export const Framework: React.FC<{ skill: Skill }> = ({ skill }) => {
                   </a>
                   <DrawerTitle>{skill.name}</DrawerTitle>
                   <DrawerDescription className="italic">
-                    {yearsOfExperience}* years of experience
+                    {yearsOfExperience}* year{yearsOfExperience > 1 ? "s" : ""}{" "}
+                    of experience
                   </DrawerDescription>
                 </DrawerHeader>
                 <div className="w-[90vw] max-w-[520px]">

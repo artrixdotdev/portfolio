@@ -1,8 +1,16 @@
-import { type Metadata } from "next";
+import { type Metadata, type Viewport } from "next";
 
 export const baseMetadata: Metadata = {
-  description: "",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  description: "Just a young, upcoming web dev",
+  icons: [
+    { rel: "icon", url: "/favicon.svg", type: "image/svg+xml" },
+
+    // { rel: "icon", url: "/favicon.ico", type: "image/ico" },
+  ],
+};
+
+export const baseViewport: Viewport = {
+  themeColor: "#09090b",
 };
 
 export const socials = {
@@ -14,3 +22,18 @@ export const socials = {
   ANILIST_USERNAME: "Artrix909",
   TWITCH_USERNAME: "artrix909",
 };
+
+export const gradientColors = [
+  "#FF4050",
+  "#FF851B",
+  "#FFD700",
+  "#BFFF00",
+  "#32CD32",
+  "#00FA9A",
+  "#40E0D0",
+  "#00BFFF",
+  "#1E90FF",
+  "#9370DB",
+  "#FF69B4",
+  "#FF1493",
+];

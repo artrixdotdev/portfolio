@@ -103,8 +103,7 @@
 
 @layer base {
   * {
-    @apply border-border;
-    
+    @apply border-border ring-ring;
   }
   body {
     @apply bg-background text-foreground;

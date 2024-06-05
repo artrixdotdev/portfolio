@@ -116,7 +116,7 @@ const NavLinkItem = memo((props: NavLink) => {
           {isCurrent && (
             <motion.span
               layoutId="active-indicator"
-              className="absolute bottom-0 mb-0.5 h-1 w-full rounded-sm bg-secondary"
+              className="absolute bottom-0 mb-0.5 h-[3px] w-full rounded-sm bg-secondary"
               initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 5 }}

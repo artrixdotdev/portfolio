@@ -56,7 +56,7 @@ export const HeroParallax: React.FC<{
   return (
     <div
       ref={ref}
-      className="absolute top-0 flex h-full flex-col self-auto overflow-hidden py-40 antialiased [perspective:1000px] [transform-style:preserve-3d]"
+      className="absolute opacity-50 top-0 flex h-full flex-col self-auto overflow-hidden py-40 antialiased [perspective:1000px] [transform-style:preserve-3d]"
     >
       {children}
       <motion.div

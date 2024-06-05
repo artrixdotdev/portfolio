@@ -6,11 +6,11 @@ export const Nextjs = (props?: React.SVGProps<SVGSVGElement>) => (
     width="24"
     height="24"
     viewBox="0 0 24 24"
-    stroke-width="2"
+    strokeWidth="2"
     stroke="currentColor"
     fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     {...props}
   >
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -26,7 +26,7 @@ export const Reactjs = (props?: React.SVGProps<SVGSVGElement>) => (
     {...props}
   >
     <circle cx="0" cy="0" r="2.05" fill="#61dafb" />
-    <g stroke="#61dafb" stroke-width="1" fill="none">
+    <g stroke="#61dafb" strokeWidth="1" fill="none">
       <ellipse rx="11" ry="4.2" />
       <ellipse rx="11" ry="4.2" transform="rotate(60)" />
       <ellipse rx="11" ry="4.2" transform="rotate(120)" />
@@ -41,12 +41,12 @@ export const Tailwind = (props?: React.SVGProps<SVGSVGElement>) => (
     viewBox="0 0 54 33"
     {...props}
   >
-    <g clip-path="url(#prefix__clip0)">
+    <g clipPath="url(#prefix__clip0)">
       <path
         fill="#38bdf8"
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.513 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.513-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       />
     </g>
     <defs>
@@ -166,10 +166,10 @@ export const Firebase = (props?: React.SVGProps<SVGSVGElement>) => (
         fill="#FFC24A"
       ></path>
       <g>
-        <use fill="#FFA712" fill-rule="evenodd" href="#path-1"></use>
+        <use fill="#FFA712" fillRule="evenodd" href="#path-1"></use>
         <use
           fill=""
-          fill-opacity="1"
+          fillOpacity="1"
           filter="url(#filter-2)"
           href="#path-1"
         ></use>
@@ -179,10 +179,10 @@ export const Firebase = (props?: React.SVGProps<SVGSVGElement>) => (
         fill="#F4BD62"
       ></path>
       <g>
-        <use fill="#FFA50E" fill-rule="evenodd" href="#path-3"></use>
+        <use fill="#FFA50E" fillRule="evenodd" href="#path-3"></use>
         <use
           fill=""
-          fill-opacity="1"
+          fillOpacity="1"
           filter="url(#filter-4)"
           href="#path-3"
         ></use>
@@ -305,6 +305,241 @@ export const Prisma = (props?: React.SVGProps<SVGSVGElement>) => (
         d="M254.312882,235.518775 L148.000961,9.74987264 C145.309805,4.08935083 139.731924,0.359884549 133.472618,0.0359753113 C127.198908,-0.384374336 121.212054,2.71925839 117.939655,8.08838662 L2.63252565,194.847143 C-0.947129465,200.604248 -0.871814894,207.912774 2.8257217,213.594888 L59.2003287,300.896318 C63.5805009,307.626626 71.8662281,310.673635 79.5631922,308.384597 L243.161606,259.992851 C248.145475,258.535702 252.252801,254.989363 254.421072,250.271225 C256.559881,245.57581 256.523135,240.176915 254.32061,235.511047 L254.312882,235.518775 Z M230.511129,245.201761 L91.6881763,286.252058 C87.4533189,287.511696 83.388474,283.840971 84.269448,279.567474 L133.866738,42.0831633 C134.794079,37.6396542 140.929985,36.9364206 142.869673,41.0476325 L234.684164,236.021085 C235.505704,237.779423 235.515611,239.809427 234.711272,241.575701 C233.906934,243.341974 232.369115,244.667163 230.503401,245.201761 L230.511129,245.201761 Z"
         fillRule="nonzero"
       ></path>
+    </g>
+  </svg>
+);
+
+export const TPRC = (props?: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 512 512"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    {/* <rect width="512" height="512" rx="150" fill="#398CCB" /> */}
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M255.446 75L326.523 116.008V138.556L412.554 188.238V273.224L435.631 286.546V368.608L364.6 409.615L333.065 391.378L256.392 435.646L180.178 391.634L149.085 409.615L78.0538 368.538V286.546L100.231 273.743V188.238L184.415 139.638L184.462 139.636V116.008L255.446 75ZM326.523 159.879V198.023L255.492 239.031L184.462 198.023V160.936L184.415 160.938L118.692 198.9V263.084L149.085 245.538L220.115 286.546V368.538L198.626 380.965L256.392 414.323L314.618 380.712L293.569 368.538V286.546L364.6 245.538L394.092 262.565V198.9L326.523 159.879ZM312.031 357.969V307.915L355.369 332.931V382.985L312.031 357.969ZM417.169 307.846L373.831 332.862V382.985L417.169 357.9V307.846ZM96.5154 357.9V307.846L139.854 332.862V382.915L96.5154 357.9ZM201.654 307.846L158.315 332.862V382.915L201.654 357.9V307.846ZM321.262 291.923L364.6 266.908L407.938 291.923L364.6 316.962L321.262 291.923ZM149.085 266.838L105.746 291.923L149.085 316.892L192.423 291.923L149.085 266.838ZM202.923 187.362V137.308L246.215 162.346V212.377L202.923 187.362ZM308.015 137.308L264.723 162.346V212.354L308.015 187.362V137.308ZM212.154 121.338L255.446 96.3231L298.785 121.338L255.446 146.354L212.154 121.338Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
+export const Drizzle = (props?: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 70 70" // adjusted viewBox
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <rect
+      width="5.25365"
+      height="22.2834"
+      rx="2.62683"
+      transform="matrix(0.873028 0.48767 -0.497212 0.867629 16.0791 30.3292)"
+      fill="currentColor"
+    ></rect>
+    <rect
+      width="5.25365"
+      height="22.2834"
+      rx="2.62683"
+      transform="matrix(0.873028 0.48767 -0.497212 0.867629 34.3301 19)"
+      fill="currentColor"
+    ></rect>
+    <rect
+      width="5.25365"
+      height="22.2834"
+      rx="2.62683"
+      transform="matrix(0.873028 0.48767 -0.497212 0.867629 62.4131 19.0005)"
+      fill="currentColor"
+    ></rect>
+    <rect
+      width="5.25365"
+      height="22.2834"
+      rx="2.62683"
+      transform="matrix(0.873028 0.48767 -0.497212 0.867629 44.1562 30.3292)"
+      fill="currentColor"
+    ></rect>
+  </svg>
+);
+
+export const Supabase = (props?: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 256 263"
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    preserveAspectRatio="xMidYMid"
+    {...props}
+  >
+    <title>supabase</title>
+    <defs>
+      <linearGradient
+        x1="20.8617445%"
+        y1="20.6868812%"
+        x2="63.4256086%"
+        y2="44.0710077%"
+        id="supabase-linearGradient-1"
+      >
+        <stop stopColor="#249361" offset="0%"></stop>
+        <stop stopColor="#3ECF8E" offset="100%"></stop>
+      </linearGradient>
+      <linearGradient
+        x1="1.99116498%"
+        y1="-13.1584008%"
+        x2="21.4025077%"
+        y2="34.708062%"
+        id="supabase-linearGradient-2"
+      >
+        <stop stopColor="#000000" offset="0%"></stop>
+        <stop stopColor="#000000" stopOpacity="0" offset="100%"></stop>
+      </linearGradient>
+    </defs>
+    <g>
+      <path
+        d="M149.601512,258.578826 C142.884085,267.038157 129.263882,262.403261 129.102024,251.601817 L126.735244,93.6176533 L232.963622,93.6176533 C252.204429,93.6176533 262.935398,115.840956 250.971119,130.909887 L149.601512,258.578826 Z"
+        fill="url(#supabase-linearGradient-1)"
+      ></path>
+      <path
+        d="M149.601512,258.578826 C142.884085,267.038157 129.263882,262.403261 129.102024,251.601817 L126.735244,93.6176533 L232.963622,93.6176533 C252.204429,93.6176533 262.935398,115.840956 250.971119,130.909887 L149.601512,258.578826 Z"
+        fillOpacity="0.2"
+        fill="url(#supabase-linearGradient-2)"
+      ></path>
+      <path
+        d="M106.399023,4.36908575 C113.11645,-4.09118439 126.736889,0.544432392 126.898746,11.3460249 L127.935901,169.329953 L23.0369844,169.329953 C3.79559007,169.329953 -6.93568494,147.106651 5.02918175,132.037719 L106.399023,4.36908575 Z"
+        fill="#3ECF8E"
+      ></path>
+    </g>
+  </svg>
+);
+export const GraphQL = (props?: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    viewBox="0 0 400 400"
+    enableBackground="new 0 0 400 400"
+    {...props}
+  >
+    <g>
+      <g>
+        <g>
+          <rect
+            x="122"
+            y="-0.4"
+            transform="matrix(-0.866 -0.5 0.5 -0.866 163.3196 363.3136)"
+            fill="#E535AB"
+            width="16.6"
+            height="320.3"
+          />
+        </g>
+      </g>
+      <g>
+        <g>
+          <rect x="39.8" y="272.2" fill="#E535AB" width="320.3" height="16.6" />
+        </g>
+      </g>
+      <g>
+        <g>
+          <rect
+            x="37.9"
+            y="312.2"
+            transform="matrix(-0.866 -0.5 0.5 -0.866 83.0693 663.3409)"
+            fill="#E535AB"
+            width="185"
+            height="16.6"
+          />
+        </g>
+      </g>
+      <g>
+        <g>
+          <rect
+            x="177.1"
+            y="71.1"
+            transform="matrix(-0.866 -0.5 0.5 -0.866 463.3409 283.0693)"
+            fill="#E535AB"
+            width="185"
+            height="16.6"
+          />
+        </g>
+      </g>
+      <g>
+        <g>
+          <rect
+            x="122.1"
+            y="-13"
+            transform="matrix(-0.5 -0.866 0.866 -0.5 126.7903 232.1221)"
+            fill="#E535AB"
+            width="16.6"
+            height="185"
+          />
+        </g>
+      </g>
+      <g>
+        <g>
+          <rect
+            x="109.6"
+            y="151.6"
+            transform="matrix(-0.5 -0.866 0.866 -0.5 266.0828 473.3766)"
+            fill="#E535AB"
+            width="320.3"
+            height="16.6"
+          />
+        </g>
+      </g>
+      <g>
+        <g>
+          <rect x="52.5" y="107.5" fill="#E535AB" width="16.6" height="185" />
+        </g>
+      </g>
+      <g>
+        <g>
+          <rect x="330.9" y="107.5" fill="#E535AB" width="16.6" height="185" />
+        </g>
+      </g>
+      <g>
+        <g>
+          <rect
+            x="262.4"
+            y="240.1"
+            transform="matrix(-0.5 -0.866 0.866 -0.5 126.7953 714.2875)"
+            fill="#E535AB"
+            width="14.5"
+            height="160.9"
+          />
+        </g>
+      </g>
+      <path
+        fill="#E535AB"
+        d="M369.5,297.9c-9.6,16.7-31,22.4-47.7,12.8c-16.7-9.6-22.4-31-12.8-47.7c9.6-16.7,31-22.4,47.7-12.8
+		C373.5,259.9,379.2,281.2,369.5,297.9"
+      />
+      <path
+        fill="#E535AB"
+        d="M90.9,137c-9.6,16.7-31,22.4-47.7,12.8c-16.7-9.6-22.4-31-12.8-47.7c9.6-16.7,31-22.4,47.7-12.8
+		C94.8,99,100.5,120.3,90.9,137"
+      />
+      <path
+        fill="#E535AB"
+        d="M30.5,297.9c-9.6-16.7-3.9-38,12.8-47.7c16.7-9.6,38-3.9,47.7,12.8c9.6,16.7,3.9,38-12.8,47.7
+		C61.4,320.3,40.1,314.6,30.5,297.9"
+      />
+      <path
+        fill="#E535AB"
+        d="M309.1,137c-9.6-16.7-3.9-38,12.8-47.7c16.7-9.6,38-3.9,47.7,12.8c9.6,16.7,3.9,38-12.8,47.7
+		C340.1,159.4,318.7,153.7,309.1,137"
+      />
+      <path
+        fill="#E535AB"
+        d="M200,395.8c-19.3,0-34.9-15.6-34.9-34.9c0-19.3,15.6-34.9,34.9-34.9c19.3,0,34.9,15.6,34.9,34.9
+		C234.9,380.1,219.3,395.8,200,395.8"
+      />
+      <path
+        fill="#E535AB"
+        d="M200,74c-19.3,0-34.9-15.6-34.9-34.9c0-19.3,15.6-34.9,34.9-34.9c19.3,0,34.9,15.6,34.9,34.9
+		C234.9,58.4,219.3,74,200,74"
+      />
     </g>
   </svg>
 );

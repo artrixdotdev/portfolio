@@ -1,5 +1,6 @@
 // @ts-nocheck
 const svgToDataUri = require("mini-svg-data-uri");
+const { nextui } = require("@nextui-org/react");
 const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
@@ -13,6 +14,7 @@ module.exports = {
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     container: {
@@ -91,6 +93,7 @@ module.exports = {
     },
   },
   plugins: [
+    nextui(),
     require("tailwindcss-animate"),
     require("tailwind-scrollbar"),
     function ({ matchUtilities, theme }) {

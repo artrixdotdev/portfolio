@@ -6,7 +6,7 @@ import { button as buttonStyles } from "@heroui/theme";
 import { siteConfig } from "@/config/site";
 import { title, subtitle } from "@/components/primitives";
 import { GithubIcon, Logo } from "@/components/icons";
-import { OrbitingSpheres, BasicSphere } from "@/components/sphere";
+import { OrbitingSpheres } from "@/components/sphere";
 
 export default async function Home() {
   return (
@@ -17,19 +17,18 @@ export default async function Home() {
         aria-label="Signature"
         className="flex flex-col items-center justify-center gap-4 py-8 md:py-10"
       >
-       <OrbitingSpheres
+        <OrbitingSpheres
           objects={[
             {
-              mass: 1,
-              volume: 1,
+              mass: 30,
+              volume: 30,
             },
             {
-              mass: 8,
-              volume: 4,
+              mass: 3,
+              volume: 3,
             },
           ]}
-        /> 
-        <BasicSphere />
+        />
       </section>
       <section
         id="projects"

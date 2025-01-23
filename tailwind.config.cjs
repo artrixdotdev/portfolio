@@ -1,133 +1,38 @@
-// @ts-nocheck
-const svgToDataUri = require("mini-svg-data-uri");
-const { nextui } = require("@nextui-org/react");
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
+import { heroui } from "@heroui/theme";
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
-
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
     extend: {
       fontFamily: {
-        "josefin-sans": ["var(--font-josefin-sans)"],
-        mono: ["var(--font-roboto-mono)"],
-      },
-      backgroundImage: {},
-
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        sans: ["var(--font-sans)"],
+        mono: ["var(--font-mono)"],
       },
       keyframes: {
         hueRotate: {
           "0%": { filter: "hue-rotate(0deg)" },
           "100%": { filter: "hue-rotate(-360deg)" },
         },
-        "accordion-down": {
-          from: { height: 0 },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
-        },
       },
-      animation: {
+      anmation: {
         "hue-rotate": "hueRotate 10s linear infinite",
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },
+  darkMode: "class",
   plugins: [
-    nextui(),
-    require("tailwindcss-animate"),
-    require("tailwind-scrollbar"),
-    function ({ matchUtilities, theme }) {
-      matchUtilities(
-        {
-          "bg-radial": (value) =>
-            `radial-gradient(ellipse 80% 50% at 50% -20%, ${value}, transparent)`,
-
-          "bg-dot-thick": (value) => ({
-            backgroundImage: `url("${svgToDataUri(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none"><circle fill="${value}" id="pattern-circle" cx="10" cy="10" r="2.5"></circle></svg>`,
-            )}")`,
-          }),
-          "bg-grid": (value) => ({
-            backgroundImage: `url("${svgToDataUri(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="${value}"><path d="M0 .5H31.5V32"/></svg>`,
-            )}")`,
-          }),
-          "bg-grid-small": (value) => ({
-            backgroundImage: `url("${svgToDataUri(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="8" height="8" fill="none" stroke="${value}"><path d="M0 .5H31.5V32"/></svg>`,
-            )}")`,
-          }),
-          "bg-dot": (value) => ({
-            backgroundImage: `url("${svgToDataUri(
-              `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="16" height="16" fill="none"><circle fill="${value}" id="pattern-circle" cx="10" cy="10" r="1.6257413380501518"></circle></svg>`,
-            )}")`,
-          }),
+    heroui({
+      layout: {
+        radius: {
+          small: "0.125rem",
+          medium: "0.4rem",
+          large: "0.6rem",
         },
-        {
-          values: flattenColorPalette(theme("backgroundColor")),
-          type: "color",
-        },
-      );
-    },
+      },
+    }),
   ],
 };

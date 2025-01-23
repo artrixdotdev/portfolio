@@ -37,7 +37,7 @@ export function useCurrentSection() {
     const observer = new IntersectionObserver(handleIntersection, {
       root: null, // use viewport
       rootMargin: "0px",
-      threshold: 0.5, // trigger when 50% of the target is visible
+      threshold: 0.75, // trigger when 75% of the target is visible
     });
 
     // Observe all section elements

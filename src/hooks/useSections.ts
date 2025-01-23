@@ -10,6 +10,7 @@ export type Section = {
 
 export function useSections() {
   const [sections, setSections] = useState<Section[]>([]);
+  console.log(sections);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");

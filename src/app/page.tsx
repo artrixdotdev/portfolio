@@ -1,41 +1,33 @@
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
-
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon, Logo } from "@/components/icons";
+import { LogoOutline } from "@/components/icons";
 import { OrbitingSpheres } from "@/components/sphere";
+import { ShootingStars } from "@/components/ui/shooting-stars";
+import { Spotlight } from "@/components/ui/spotlight";
+import { StarsBackground } from "@/components/ui/star-background";
+import { FlipWords } from "@/components/ui/flip-words";
+import {
+  AboutSection,
+  BlogSection,
+  ContactSection,
+  IntroSection,
+  ProjectsSection,
+} from "@/components/home/sections";
 
-export default async function Home() {
+export default function Home() {
+  const objects = [
+    7,
+    Math.random() * Math.random() * (Math.random() > 0.5 ? 7 : 2),
+  ]
+    .map(Math.round)
+    .map((m) => (m < 2 ? 1 : m))
+    .map((m) => ({ mass: m, volume: m }));
+
   return (
     <>
-      <section
-        id="intro"
-        title="Introduction"
-        aria-label="Signature"
-        className="flex flex-col items-center justify-center gap-4 py-8 md:py-10"
-      >
-        <OrbitingSpheres
-          objects={[
-            {
-              mass: 30,
-              volume: 30,
-            },
-            {
-              mass: 3,
-              volume: 3,
-            },
-          ]}
-        />
-      </section>
-      <section
-        id="projects"
-        title="Projects"
-        aria-label="Computer"
-        className="h-screen"
-      ></section>
+      <IntroSection />
+      <AboutSection />
+      <ProjectsSection />
+      <BlogSection />
+      <ContactSection />
     </>
   );
 }

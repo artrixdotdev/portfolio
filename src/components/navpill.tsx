@@ -50,7 +50,7 @@ export function NavigationPill() {
   return (
     <Card
       as="nav"
-      className="fixed bottom-5 flex-row left-1/2 transform -translate-x-1/2 p-2 z-50"
+      className="fixed shadow-2xl bottom-5 flex-row left-1/2 transform -translate-x-1/2 p-2 z-50"
     >
       {sections.length > 0 && (
         <>
@@ -71,7 +71,9 @@ export function NavigationPill() {
                 <button
                   key={index}
                   className={`w-2 h-2 rounded-full ${
-                    index === currentSectionIndex ? "bg-primary" : "bg-gray-300"
+                    index === currentSectionIndex
+                      ? "bg-primary"
+                      : "bg-foreground-500"
                   }`}
                 />
               ))}

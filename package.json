@@ -26,6 +26,7 @@
     "@heroui/system": "2.4.7",
     "@heroui/theme": "2.4.6",
     "@icons-pack/react-simple-icons": "^11.1.0",
+    "@octokit/request": "^9.2.0",
     "@react-aria/ssr": "3.9.7",
     "@react-aria/visually-hidden": "3.8.19",
     "@react-three/fiber": "^9.0.0-alpha.8",

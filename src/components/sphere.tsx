@@ -79,7 +79,7 @@ const OrbitingSystem: React.FC<OrbitingSpheresProps> = ({ objects }) => {
     const totalMass = body1.mass + body2.mass;
 
     // Calculate true Center of Mass
-    const totalRadius = 250; // Increased orbital radius
+    const totalRadius = 150; // Increased orbital radius
 
     // Precise mass-weighted positioning
     const r1 = totalRadius * (body2.mass / totalMass);
@@ -104,7 +104,7 @@ const OrbitingSystem: React.FC<OrbitingSpheresProps> = ({ objects }) => {
 
     const [body1, body2] = objects;
     const totalMass = body1.mass + body2.mass;
-    const totalRadius = 250;
+    const totalRadius = 150;
 
     // Calculate precise radii based on mass
     const r1 = totalRadius * (body2.mass / totalMass);
@@ -146,23 +146,26 @@ const OrbitingSystem: React.FC<OrbitingSpheresProps> = ({ objects }) => {
   );
 };
 
-export const OrbitingSpheres: React.FC<OrbitingSpheresProps> = (props) => {
+export const OrbitingSpheres = React.forwardRef<
+  HTMLCanvasElement,
+  React.RefAttributes<HTMLCanvasElement> & OrbitingSpheresProps
+>(({ objects, ...props }, ref) => {
   return (
-    <div className="w-full h-screen">
-      <Canvas
-        camera={{
-          position: [200, 300, 600], // Top down view
-          fov: 45,
-        }}
-        onCreated={({ scene }) => {
-          scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-          const light = new THREE.DirectionalLight(0xffffff, 1);
-          light.position.set(0, 0, 100);
-          scene.add(light);
-        }}
-      >
-        <OrbitingSystem {...props} />
-      </Canvas>
-    </div>
+    <Canvas
+      camera={{
+        position: [200, 300, 200], // Top-down view
+        fov: 45,
+      }}
+      ref={ref}
+      onCreated={({ scene }) => {
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(0, 0, 100);
+        scene.add(light);
+      }}
+      {...props}
+    >
+      <OrbitingSystem objects={objects} />
+    </Canvas>
   );
-};
+});

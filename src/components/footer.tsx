@@ -39,9 +39,7 @@ export function Footer() {
               endContent: "fill-background stroke-background",
               wrapper: "!bg-foreground !ring-ring",
             }}
-
-            defaultSelected={theme === "light"}
-            
+            checked={theme === "dark"}
             startContent={<SunIcon />}
             endContent={<MoonIcon />}
             onValueChange={(c) => setTheme(c ? "light" : "dark")}

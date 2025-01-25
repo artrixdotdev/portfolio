@@ -3,6 +3,7 @@ import { useSections } from "@/hooks/useSections";
 
 export function useCurrentSection() {
   const sections = useSections();
+  console.log(sections)
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
 
   // Create refs for sections

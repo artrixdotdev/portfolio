@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 export default function Loading() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -100 }}
+      initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 100 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
+      exit={{ opacity: 0, y: -50 }}
+      transition={{ duration: 0.6, ease: "circInOut" }}
       className="flex h-screen pb-48 items-center justify-center"
     >
-      <LogoOutline className="h-48 w-48 animate-hue-rotate" />
+      <LogoOutline className="h-32 w-32 animate-hue-rotate" />
     </motion.div>
   );
 }

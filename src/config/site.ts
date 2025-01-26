@@ -33,7 +33,7 @@ export const siteConfig = {
     twitter: "https://twitter.com/artrix909",
     discord: "artrix_",
   },
-};
+} as const;
 
 export const gradientColors = [
   // Reds

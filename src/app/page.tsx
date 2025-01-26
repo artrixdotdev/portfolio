@@ -1,9 +1,3 @@
-import { LogoOutline } from "@/components/icons";
-import { OrbitingSpheres } from "@/components/sphere";
-import { ShootingStars } from "@/components/ui/shooting-stars";
-import { Spotlight } from "@/components/ui/spotlight";
-import { StarsBackground } from "@/components/ui/star-background";
-import { FlipWords } from "@/components/ui/flip-words";
 import {
   AboutSection,
   BlogSection,
@@ -11,6 +5,7 @@ import {
   IntroSection,
   ProjectsSection,
 } from "@/components/home/sections";
+import { GradiantBackground } from "@/components/radial-gradient";
 
 export default function Home() {
   const objects = [
@@ -23,6 +18,7 @@ export default function Home() {
 
   return (
     <>
+      <GradiantBackground />
       <IntroSection />
       <AboutSection />
       <ProjectsSection />

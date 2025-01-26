@@ -4,24 +4,38 @@ import { ShootingStars } from "../ui/shooting-stars";
 import { StarsBackground } from "../ui/star-background";
 import { Spotlight } from "../ui/spotlight";
 import { FlipWords } from "../ui/flip-words";
-
-export const IntroSection = () => (
-  <Section
-    id="intro"
-    title="Opening"
-    icon="Signature"
-    className="flex flex-col items-center justify-center md:flex-row min-h-screen gap-0 w-full mt-32 md:mt-0"
-  >
-    <ShootingStars />
-    <StarsBackground />
-    <Spotlight />
-    <div className="flex flex-col items-center justify-center gap-4 w-full">
-      <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
-        Hi, I'm <FlipWords words={["Artrix", "Sefu"]} />
-      </h1>
-    </div>
-  </Section>
-);
+import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
+export const IntroSection = () => {
+  const { theme } = useTheme();
+  return (
+    <Section
+      id="intro"
+      title="Opening"
+      icon="Signature"
+      className="relative flex flex-col items-center justify-center md:flex-row min-h-screen gap-0 w-full mt-32 md:mt-0"
+    >
+      <ShootingStars />
+      {theme === "dark" && (
+        <>
+          <StarsBackground />
+          <Spotlight />{" "}
+        </>
+      )}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -50 }}
+        transition={{ duration: 0.5, type: "spring" }}
+        className="flex flex-col items-center justify-center gap-4 w-full"
+      >
+        <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
+          Hi, I'm <FlipWords words={["Artrix", "Sefu"]} />
+        </h1>
+      </motion.div>
+    </Section>
+  );
+};
 
 export const AboutSection = () => (
   <Section

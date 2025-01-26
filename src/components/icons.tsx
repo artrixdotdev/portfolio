@@ -125,24 +125,6 @@ export const LogoOutline = (props: React.SVGProps<SVGSVGElement>) => {
       height="24"
       {...props}
     >
-      <defs>
-        <linearGradient
-          id="linear-gradient"
-          x1="0%"
-          y1="50%"
-          x2="100%"
-          y2="50%"
-        >
-          {gradientColors.map((color, index) => (
-            <stop
-              key={index}
-              offset={`${(index * 100) / (gradientColors.length - 1)}%`}
-              stopColor={color}
-              stopOpacity="1"
-            />
-          ))}
-        </linearGradient>
-      </defs>
       <path
         style={{
           animation: "hueRotate 1s linear infinite",
@@ -162,3 +144,18 @@ export const LogoOutline = (props: React.SVGProps<SVGSVGElement>) => {
     </svg>
   );
 };
+
+export const SVGGradientDef = () => (
+  <defs>
+    <linearGradient id="linear-gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      {gradientColors.map((color, index) => (
+        <stop
+          key={index}
+          offset={`${(index * 100) / (gradientColors.length - 1)}%`}
+          stopColor={color}
+          stopOpacity="1"
+        />
+      ))}
+    </linearGradient>
+  </defs>
+);

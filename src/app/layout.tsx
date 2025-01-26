@@ -87,7 +87,7 @@ export default function RootLayout({
         )}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col items-center h-screen overflow-x-hidden">
+          <div className="relative flex flex-col items-center min-h-screen overflow-x-hidden">
             <Navbar />
             <main className="container flex-grow">{children}</main>
             <NavigationPill />

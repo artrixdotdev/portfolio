@@ -24,7 +24,7 @@ export const PillSection = ({
     animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 50 }}
     exit={{ opacity: 0, y: -50 }}
     transition={{ duration: 0.5, type: "spring" }}
-    className={`flex items-center  ${isActive ? "visible" : "invisible absolute"}`}
+    className={`flex items-center  ${isActive ? "visible" : "invisible absolute font-bold"}`}
   >
     <Link
       href={`#${id}`}
@@ -98,7 +98,7 @@ export function NavigationPill() {
           </BreadcrumbItem>
           {pathParts.map((part, index) => (
             <BreadcrumbItem
-              key={part}
+              key={`${part}-${index}`}
               href={`/${pathParts.slice(0, index + 1).join("/")}`}
             >
               {part}

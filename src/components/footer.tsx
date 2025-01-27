@@ -12,7 +12,7 @@ export function Footer() {
   const socials = siteConfig.links;
 
   return (
-    <footer className="container mx-auto px-4 py-10">
+    <footer id="footer" className="container mx-auto px-4 py-10">
       <div className="flex flex-col space-y-6">
         {/* Header Section */}
         <div className="flex justify-between items-center text-foreground">
@@ -48,7 +48,7 @@ export function Footer() {
         </div>
 
         {/* Copyright and Credits */}
-        <div className="text-center">
+        <div className="text-center text-foreground">
           <p className="text-sm">
             &copy; {new Date().getFullYear()} Artrix. All rights reserved.
           </p>

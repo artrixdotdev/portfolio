@@ -159,3 +159,21 @@ export const SVGGradientDef = () => (
     </linearGradient>
   </defs>
 );
+
+export const SVGGradientDefDiagonal = () => (
+  <defs>
+    <linearGradient id="linear-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+      {gradientColors.map((color, index) => (
+        <stop
+          key={index}
+          offset={`${(index * 100) / (gradientColors.length - 1)}%`}
+          stopColor={color}
+          stopOpacity="1"
+          style={{
+            transform: "rotate(45deg)",
+          }}
+        />
+      ))}
+    </linearGradient>
+  </defs>
+);

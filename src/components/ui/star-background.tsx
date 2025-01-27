@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@heroui/theme";
+import { useTheme } from "next-themes";
 import React, {
   useState,
   useEffect,
@@ -33,6 +34,18 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
   maxTwinkleSpeed = 1,
   className,
 }) => {
+  const { theme } = useTheme();
+  const [fillColor, setFillColor] = useState("");
+  console.log(fillColor);
+
+  useEffect(() => {
+    setFillColor(
+      getComputedStyle(document.body)
+        .getPropertyValue("--heroui-foreground")
+        .replaceAll(" ", ", "),
+    );
+  }, [theme]);
+
   const [stars, setStars] = useState<StarProps[]>([]);
   const canvasRef: RefObject<HTMLCanvasElement | null> =
     useRef<HTMLCanvasElement>(null);
@@ -114,7 +127,8 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
       stars.forEach((star) => {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+
+        ctx.fillStyle = `hsla(${fillColor}, ${star.opacity})`;
         ctx.fill();
 
         if (star.twinkleSpeed !== null) {

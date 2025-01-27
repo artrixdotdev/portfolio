@@ -1,27 +1,41 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
-import { useSections } from "@/hooks/useSections";
+import { useCallback, useEffect, useState } from "react";
+import { useSections } from "./useSections";
 
 export function useCurrentSection() {
   const sections = useSections();
-  console.log(sections)
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const [sectionRefs, setSectionRefs] = useState<(HTMLElement | null)[]>([]);
 
-  // Create refs for sections
-  const sectionRefs = useMemo(
-    () => sections.map((section) => document.getElementById(section.id)),
-    [sections],
-  );
+  // Update refs when sections change or when DOM updates
+  useEffect(() => {
+    const updateRefs = () => {
+      const newRefs = sections.map((section) =>
+        document.getElementById(section.id),
+      );
+      setSectionRefs(newRefs);
+    };
+
+    updateRefs();
+
+    // Set up a MutationObserver to watch for DOM changes
+    const observer = new MutationObserver(updateRefs);
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => observer.disconnect();
+  }, [sections]);
 
   // Handle section change based on intersection
   const handleIntersection = useCallback(
     (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
-        // Find the index of the intersecting section
         const index = sectionRefs.findIndex(
           (ref) => ref?.id === entry.target.id,
         );
 
-        // Check if more than 50% of the section is visible
         if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
           setCurrentSectionIndex(index);
         }
@@ -32,21 +46,18 @@ export function useCurrentSection() {
 
   // Set up Intersection Observer
   useEffect(() => {
-    // Only set up if we have sections
-    if (sections.length === 0) return;
+    if (sections.length === 0 || sectionRefs.length === 0) return;
 
     const observer = new IntersectionObserver(handleIntersection, {
-      root: null, // use viewport
+      root: null,
       rootMargin: "0px",
-      threshold: 0.75, // trigger when 75% of the target is visible
+      threshold: 0.6,
     });
 
-    // Observe all section elements
     sectionRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
-    // Cleanup
     return () => {
       sectionRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);

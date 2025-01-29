@@ -9,7 +9,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "@/components/icons";
 import { useCurrentSection } from "@/hooks/useCurrentSection";
 import { Section } from "@/hooks/useSections";
-
+import { useTheme } from "next-themes";
+import NextLink from "next/link";
 // PillSection component with animation
 export const PillSection = ({
   id,
@@ -24,16 +25,17 @@ export const PillSection = ({
     animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 50 }}
     exit={{ opacity: 0, y: -50 }}
     transition={{ duration: 0.5, type: "spring" }}
-    className={`flex items-center ${isActive ? "visible" : "invisible absolute font-bold"}`}
+    className={`flex  items-center ${isActive ? "visible" : "invisible absolute font-bold"}`}
   >
-    <Link
+    <NextLink
+      scroll
       href={`#${id}`}
       color="foreground"
       className="flex items-center gap-2"
     >
       <SectionIcon className="h-5 w-5" />
       <span>{title}</span>
-    </Link>
+    </NextLink>
   </motion.div>
 );
 
@@ -42,6 +44,7 @@ export function NavigationPill() {
   const { currentSectionIndex, sections } = useCurrentSection();
   const pathParts = pathname.split("/").filter(Boolean);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     // Create intersection observer for footer
@@ -74,11 +77,17 @@ export function NavigationPill() {
     return null;
   }
 
+  let isMobile = false;
+  if (typeof window !== "undefined" && window.innerWidth < 768) {
+    isMobile = true;
+  }
+
   return (
     <motion.div
-      initial={{ x: "-50%" }}
+      initial={{ x: "-50%", y: 0 }}
       animate={{
-        x: isFooterVisible ? "calc(30vw - 2rem)" : "-50%",
+        x: isFooterVisible && !isMobile ? "calc(30vw - 2rem)" : "-50%",
+        y: isMobile && isFooterVisible ? "200%" : "0",
         transition: {
           type: "spring",
           stiffness: 100,
@@ -87,7 +96,10 @@ export function NavigationPill() {
       }}
       className="fixed bottom-5 left-1/2 z-50"
     >
-      <Card as="nav" className="shadow-2xl flex-row p-2">
+      <Card
+        as="nav"
+        className={`shadow-2xl flex-row p-2 ${theme === "light" && "border"}`}
+      >
         {sections.length > 0 && (
           <>
             <div className="flex items-center justify-center relative">

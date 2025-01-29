@@ -8,7 +8,7 @@ import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useTheme } from "next-themes";
 import { OrbitingSpheres } from "../sphere";
 import { ChevronDown } from "lucide-react";
-import { SVGGradientDef, SVGGradientDefDiagonal } from "../icons";
+import { LogoOutline, SVGGradientDef, SVGGradientDefDiagonal } from "../icons";
 import NextLink from "next/link";
 import { useRef } from "react";
 
@@ -79,29 +79,25 @@ export const IntroSection = () => {
 };
 
 export const AboutSection = () => {
-  const container = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    container,
-  });
-  console.log(scrollYProgress);
-
   return (
     <Section
       id="about"
       title="About"
       icon="Heart"
-      className="relative flex flex-col items-center justify-center md:flex-row min-h-screen gap-0 w-full mt-32 md:mt-0"
+      className="relative flex items-center justify-start md:flex-row min-h-screen gap-0 w-full mt-32 md:mt-0"
     >
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.75, type: "spring", delay: 1 }}
-        className="flex flex-col items-center justify-center gap-4 w-full"
+        className="flex flex-col items-center justify-start gap-4 w-full"
       >
-        <h1 className="text-4xl lg:text-5xl font-bold text-foreground">
+        <LogoOutline className="h-32 w-32" />
+        <h3 className="text-2xl font-mono font-bold text-default-500">
           About me
-        </h1>
+        </h3>
       </motion.div>
+      <OrbitingSpheres objects={[7, 3].map((m) => ({ mass: m, volume: m }))} />
     </Section>
   );
 };

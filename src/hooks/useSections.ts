@@ -12,9 +12,9 @@ export type Section = {
 export function useSections() {
   const [sections, setSections] = useState<Section[]>([]);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
   const handleSections = () => {
+    console.log("handleSections");
     const sections = document.querySelectorAll("section");
     const newSections = Array.from(sections)
       .map((section) => {
@@ -49,9 +49,8 @@ export function useSections() {
 
     // Initial load
     observer.takeRecords();
-    handleSections();
     return () => observer.disconnect();
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return sections;
 }

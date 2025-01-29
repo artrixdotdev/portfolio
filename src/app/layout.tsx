@@ -3,7 +3,6 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
-
 import { siteConfig, gradientColors } from "@/config/site";
 import { fontMono, fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
@@ -81,15 +80,22 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased *:text-foreground",
+          "min-h-screen relative bg-background font-sans antialiased *:text-foreground",
           fontSans.variable,
           fontMono.variable,
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-          <div className="relative flex flex-col items-center min-h-screen overflow-x-hidden">
-            <Navbar />
-            <main className="container flex-grow">{children}</main>
+        <Providers
+          themeProps={{
+            attribute: "class",
+            defaultTheme: "dark",
+            enableSystem: true,
+            storageKey: "theme",
+          }}
+        >
+          <Navbar />
+          <div className="absolute top-0 right-0 min-w-screen w-full flex flex-col items-center min-h-screen overflow-x-hidden">
+            <main className="w-full h-full flex-grow">{children}</main>
             <NavigationPill />
             <Divider className="max-w-[90%] mx-auto" />
             <Footer />

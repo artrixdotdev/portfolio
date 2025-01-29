@@ -43,7 +43,7 @@ export const BentoGrid = React.forwardRef<
         "grid grid-auto-flow-dense",
         "grid-cols-[repeat(auto-fill,128px)]",
         "grid-rows-[repeat(2,128px)] auto-rows-[minmax(128px,auto)]",
-        "w-full h-full gap-4 p-6",
+        "w-full h-full gap-6 p-6",
         className,
       )}
       ref={ref}

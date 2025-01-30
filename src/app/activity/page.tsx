@@ -3,8 +3,11 @@ import { title } from "@/components/primitives";
 import { Section } from "@/components/section";
 import { GithubContributionsGraph } from "@/components/activity/github-graphs";
 import { Button } from "@heroui/button";
-import { BentoBox, BentoGrid } from "@/components/bento";
+import { BentoBox, BentoGrid, BentoSizes } from "@/components/bento";
 export default async function AboutPage() {
+  const items = (
+    ["wide", "tall", "compact", "compact", "compact", "compact"] as BentoSizes[]
+  ).map((s, _) => [`test${_}`, s] as const);
   return (
     <Section
       id="activity"
@@ -12,13 +15,16 @@ export default async function AboutPage() {
       icon="Activity"
       className="mt-20 justify-items-center items-center"
     >
-      <BentoGrid className="min-h-screen">
-        <BentoBox size="wide">Be</BentoBox>
-        <BentoBox size="wide">Be</BentoBox>
-        <BentoBox size="compact">Bye</BentoBox>
-        <BentoBox size="compact">HI</BentoBox>
-        <BentoBox size="tall">Hi</BentoBox>
-        <BentoBox size="canvas">Hi</BentoBox>
+      <BentoGrid
+        name="activity-bento"
+        items={items.map(([id]) => id)}
+        className="min-h-screen"
+      >
+        {items.map(([id, size]) => (
+          <BentoBox className="border" key={id} id={id} size={size}>
+            {id}
+          </BentoBox>
+        ))}
       </BentoGrid>
     </Section>
   );

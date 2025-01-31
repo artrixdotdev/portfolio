@@ -30,25 +30,7 @@ export const IntroSection = () => {
           <Spotlight />
         </>
       )}
-      <motion.div
-        initial={{
-          opacity: 0,
-          scale: 0,
-        }}
-        animate={{
-          opacity: 0.5,
-          scale: 1,
-        }}
-        exit={{
-          opacity: 0,
-          scale: 0,
-        }}
-        transition={{
-          duration: 0.5,
-          type: "spring",
-        }}
-        className="absolute w-full h-full opacity-50"
-      >
+      <motion.div className="absolute w-full h-full opacity-50">
         <OrbitingSpheres objects={sphereObjects} />
       </motion.div>
       <motion.div
@@ -90,7 +72,6 @@ export const AboutSection = () => {
           About me
         </h3>
       </motion.div>
-      <OrbitingSpheres objects={[7, 3].map((m) => ({ mass: m, volume: m }))} />
     </Section>
   );
 };

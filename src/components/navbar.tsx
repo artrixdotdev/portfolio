@@ -28,7 +28,6 @@ export const Navbar = ({
   parentRef?: React.RefObject<HTMLElement>;
 }) => {
   const renderNavItem = (item: (typeof siteConfig.navItems)[number]) => {
-    console.log(item);
     if (item.children) {
       return (
         <Dropdown key={item.href}>

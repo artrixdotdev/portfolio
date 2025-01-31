@@ -18,7 +18,8 @@ interface OrbitingSpheresProps {
 const Sphere = forwardRef<THREE.Group, { radius: number; color: string }>(
   ({ radius, color }, ref) => {
     const separation = 10;
-    const rotationSpeed = useRef(Math.random() * 0.05 - 0.5); // Random rotation speed between -0.25 and 0.25
+    const baseRotationSpeed = 0.5; // Rotations per second
+    const rotationSpeed = useRef(baseRotationSpeed * (Math.random() * 2 - 1)); // Random speed between -0.5 and 0.5 rotations per second
 
     // Generate sphere points
     const points = useMemo(() => {
@@ -38,11 +39,13 @@ const Sphere = forwardRef<THREE.Group, { radius: number; color: string }>(
       return pointsArray;
     }, [radius, separation]);
 
-    // Add rotation
-    useFrame(() => {
+    // Add rotation with time delta
+    useFrame((state, delta) => {
       if (ref && typeof ref === "object" && ref.current) {
-        ref.current.rotation.y += rotationSpeed.current;
-        ref.current.rotation.x += rotationSpeed.current;
+        // Convert rotations per second to radians per second (2π radians = 1 rotation)
+        const deltaRotation = rotationSpeed.current * 2 * Math.PI * delta;
+        ref.current.rotation.y += deltaRotation;
+        ref.current.rotation.x += deltaRotation;
       }
     });
 
@@ -67,6 +70,7 @@ const OrbitingSystem: React.FC<OrbitingSpheresProps> = ({ objects }) => {
   const refs = useRef<THREE.Group[]>([]);
   const angles = useRef<number[]>([]);
   const comRef = useRef<THREE.Vector3>(new THREE.Vector3());
+  const orbitalSpeed = useRef(0.25); // Orbits per second
 
   // Initialize angles and positions
   useEffect(() => {
@@ -98,8 +102,8 @@ const OrbitingSystem: React.FC<OrbitingSpheresProps> = ({ objects }) => {
     angles.current = [0, Math.PI];
   }, [objects]);
 
-  // Orbital motion
-  useFrame(() => {
+  // Orbital motion with time delta
+  useFrame((state, delta) => {
     if (objects.length !== 2 || !refs.current[0] || !refs.current[1]) return;
 
     const [body1, body2] = objects;
@@ -110,8 +114,9 @@ const OrbitingSystem: React.FC<OrbitingSpheresProps> = ({ objects }) => {
     const r1 = totalRadius * (body2.mass / totalMass);
     const r2 = totalRadius * (body1.mass / totalMass);
 
-    // Update angles (orbital motion speed)
-    angles.current[0] += 0.02;
+    // Update angles based on time delta (convert orbits per second to radians per second)
+    const deltaAngle = orbitalSpeed.current * 2 * Math.PI * delta;
+    angles.current[0] += deltaAngle;
 
     // Update positions around fixed COM
     refs.current[0].position.set(
@@ -157,11 +162,13 @@ export const OrbitingSpheres = React.forwardRef<
         fov: 45,
       }}
       ref={ref}
-      onCreated={({ scene }) => {
+      resize={{ scroll: false, debounce: { scroll: 50, resize: 0 } }}
+      onCreated={({ scene, setSize }) => {
         scene.add(new THREE.AmbientLight(0xffffff, 0.5));
         const light = new THREE.DirectionalLight(0xffffff, 1);
         light.position.set(0, 0, 100);
         scene.add(light);
+        setSize(window.innerWidth, window.innerHeight);
       }}
       {...props}
     >

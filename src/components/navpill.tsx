@@ -73,9 +73,9 @@ export function NavigationPill() {
     };
   }, []);
 
-  if (pathParts.length === 0 && sections.length === 0) {
-    return null;
-  }
+  //if (pathParts.length === 0 && sections.length === 0) {
+  //  return null;
+  //}
 
   let isMobile = false;
   if (typeof window !== "undefined" && window.innerWidth < 768) {

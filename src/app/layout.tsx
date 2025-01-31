@@ -7,7 +7,7 @@ import { siteConfig, gradientColors } from "@/config/site";
 import { fontMono, fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
-import { Divider } from "@heroui/divider";
+import { Divider } from "@heroui/react";
 import { NavigationPill } from "@/components/navpill";
 
 export const metadata: Metadata = {
@@ -87,7 +87,7 @@ export default function RootLayout({
         className={clsx(
           "min-h-screen relative bg-background font-sans antialiased *:text-foreground",
           fontSans.variable,
-          fontMono.variable,
+          fontMono.variable
         )}
       >
         <Providers

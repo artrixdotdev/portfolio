@@ -1,4 +1,4 @@
-import { heroui } from "@heroui/theme";
+import { heroui } from "@heroui/react";
 import svgToDataUri from "mini-svg-data-uri";
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 

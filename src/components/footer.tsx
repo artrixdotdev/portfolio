@@ -1,11 +1,11 @@
 "use client";
 import { siteConfig } from "@/config/site";
-import { Switch } from "@heroui/switch";
-import { Link } from "@heroui/link";
+import { Switch } from "@heroui/react";
+import { Link } from "@heroui/react";
 import { GithubIcon, LogoText, MoonIcon, SunIcon } from "@/components/icons";
 import { SiDiscord as DiscordIcon } from "@icons-pack/react-simple-icons";
 import { useTheme } from "next-themes";
-import { link } from "@heroui/theme";
+import { link } from "@heroui/react";
 
 export function Footer() {
   const { setTheme, theme } = useTheme();

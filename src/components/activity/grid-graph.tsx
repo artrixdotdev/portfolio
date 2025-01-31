@@ -1,7 +1,7 @@
 "use client";
 import { ContributionsCalender } from "@/lib/github";
-import { cn } from "@heroui/theme";
-import { Tooltip } from "@heroui/tooltip";
+import { cn } from "@heroui/react";
+import { Tooltip } from "@heroui/react";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
 
@@ -80,7 +80,7 @@ function ContributionDay({
         className={cn(
           "aspect-square shadow-xl rounded-sm transition-all duration-200", // Reduced duration
           contributionColor,
-          "hover:ring-2 hover:ring-primary-500 hover:ring-opacity-50",
+          "hover:ring-2 hover:ring-primary-500 hover:ring-opacity-50"
         )}
       />
     </Tooltip>

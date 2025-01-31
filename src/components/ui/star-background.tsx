@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@heroui/theme";
+import { cn } from "@heroui/react";
 import { useTheme } from "next-themes";
 import React, {
   useState,
@@ -41,7 +41,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
     setFillColor(
       getComputedStyle(document.body)
         .getPropertyValue("--heroui-foreground")
-        .replaceAll(" ", ", "),
+        .replaceAll(" ", ", ")
     );
   }, [theme]);
 
@@ -74,7 +74,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
       twinkleProbability,
       minTwinkleSpeed,
       maxTwinkleSpeed,
-    ],
+    ]
   );
 
   useEffect(() => {

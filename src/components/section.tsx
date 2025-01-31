@@ -1,7 +1,7 @@
 // For compatability with hooks/useSections.ts
 
 import React from "react";
-import { cn } from "@heroui/theme";
+import { cn } from "@heroui/react";
 export type SectionProps = {
   title: string;
   id: string;
@@ -21,5 +21,5 @@ export const Section = React.forwardRef<HTMLDivElement, SectionProps>(
         {children}
       </section>
     );
-  },
+  }
 );

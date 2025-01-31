@@ -1,6 +1,6 @@
 "use client";
 import { useState, useMemo } from "react";
-import { Card } from "@heroui/card";
+import { Card } from "@heroui/react";
 import {
   CalendarIcon,
   BarChart3Icon,
@@ -24,8 +24,8 @@ import {
   DropdownTrigger,
   DropdownItem,
   DropdownMenu,
-} from "@heroui/dropdown";
-import { Button } from "@heroui/button";
+} from "@heroui/react";
+import { Button } from "@heroui/react";
 import { ContributionsCalender } from "@/lib/github";
 import {
   ChartConfig,
@@ -61,7 +61,7 @@ export function ContributionVisualization({
           day: "numeric",
         }),
         contributions: day.contributionCount,
-      })),
+      }))
     );
   }, [contributions]);
 

@@ -8,10 +8,10 @@ import {
   DragControls,
 } from "framer-motion";
 import { tv } from "tailwind-variants";
-import { cn } from "@heroui/theme";
+import { cn } from "@heroui/react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Grip } from "lucide-react";
-import { Skeleton } from "@heroui/skeleton";
+import { Skeleton } from "@heroui/react";
 
 // Types and Constants
 export type BentoSizes = "compact" | "wide" | "tall" | "canvas";
@@ -34,7 +34,7 @@ const bentoStyles = tv({
 // Helper function to get next size
 const getNextSize = (
   currentSize: BentoSizes,
-  direction: "increase" | "decrease",
+  direction: "increase" | "decrease"
 ): BentoSizes => {
   const sizeIndex = sizes.indexOf(currentSize);
   if (direction === "increase") {
@@ -84,7 +84,7 @@ const Resizer: React.FC<ResizerProps> = ({ position, size, setSize }) => {
           "top-0 right-0 border-t-2 border-r-2": position === "tr",
           "bottom-0 left-0 border-b-2 border-l-2": position === "bl",
           "bottom-0 right-0 border-b-2 border-l-2": position === "br",
-        },
+        }
       )}
     />
   );
@@ -101,13 +101,13 @@ export const BentoGrid = React.forwardRef<HTMLUListElement, BentoGridProps>(
   ({ name, children, className, items: initialItems, ...props }, ref) => {
     const [items, setItems] = useLocalStorage<string[]>(
       `bento-${name}`,
-      initialItems,
+      initialItems
     );
     const childrenArray = React.Children.toArray(children);
     const orderedChildren = items?.map((id) =>
       childrenArray.find(
-        (child) => React.isValidElement(child) && child.key === `.$${id}`,
-      ),
+        (child) => React.isValidElement(child) && child.key === `.$${id}`
+      )
     );
 
     return (
@@ -122,7 +122,7 @@ export const BentoGrid = React.forwardRef<HTMLUListElement, BentoGridProps>(
           "auto-rows-[var(--cell-size)]",
           "w-full gap-4 p-6 place-items-center",
           "max-h-[calc(4*var(--cell-size)+5*1rem)]",
-          className,
+          className
         )}
         style={
           {
@@ -136,7 +136,7 @@ export const BentoGrid = React.forwardRef<HTMLUListElement, BentoGridProps>(
         <AnimatePresence>{orderedChildren}</AnimatePresence>
       </Reorder.Group>
     );
-  },
+  }
 );
 
 BentoGrid.displayName = "BentoGrid";
@@ -153,7 +153,7 @@ export const BentoBox = React.forwardRef<HTMLLIElement, BentoBoxProps>(
     const value = props.id || Math.random().toString();
     const [currentSize, setCurrentSize] = useLocalStorage<BentoSizes>(
       value,
-      size,
+      size
     );
 
     return (
@@ -164,7 +164,7 @@ export const BentoBox = React.forwardRef<HTMLLIElement, BentoBoxProps>(
         className={cn(
           "relative",
           bentoStyles({ size: currentSize || size }),
-          className,
+          className
         )}
         dragListener={currentSize === "compact"}
         dragControls={controls}
@@ -188,7 +188,7 @@ export const BentoBox = React.forwardRef<HTMLLIElement, BentoBoxProps>(
         )}
       </Reorder.Item>
     );
-  },
+  }
 );
 
 BentoBox.displayName = "BentoBox";

@@ -2,7 +2,7 @@ import { getContributions } from "@/lib/github";
 import { title } from "@/components/primitives";
 import { Section } from "@/components/section";
 import { GithubContributionsGraph } from "@/components/activity/github-graphs";
-import { Button } from "@heroui/button";
+import { Button } from "@heroui/react";
 import { BentoBox, BentoGrid, BentoSizes } from "@/components/bento";
 import { DiscordBento } from "@/components/activity/boxes/discord";
 

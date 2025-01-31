@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { Link } from "@heroui/link";
-import { Card } from "@heroui/card";
-import { Breadcrumbs, BreadcrumbItem } from "@heroui/breadcrumbs";
-import { Divider } from "@heroui/divider";
+import { Link } from "@heroui/react";
+import { Card } from "@heroui/react";
+import { Breadcrumbs, BreadcrumbItem } from "@heroui/react";
+import { Divider } from "@heroui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "@/components/icons";
 import { useCurrentSection } from "@/hooks/useCurrentSection";
@@ -57,7 +57,7 @@ export function NavigationPill() {
       },
       {
         threshold: 0.2, // Trigger when footer is 100% visible
-      },
+      }
     );
 
     // Observe footer element

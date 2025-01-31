@@ -1,6 +1,6 @@
 "use client";
 import { gradientColors } from "@/config/site";
-import { cn } from "@heroui/theme";
+import { cn } from "@heroui/react";
 import React, { useEffect, useState, useRef } from "react";
 
 interface ShootingStar {

@@ -1,4 +1,4 @@
-import { cn } from "@heroui/theme";
+import { cn } from "@heroui/react";
 
 export const RadialGradient: React.FC<{ children?: React.ReactNode }> = ({
   children,
@@ -8,7 +8,7 @@ export const RadialGradient: React.FC<{ children?: React.ReactNode }> = ({
       "absolute pointer-events-none inset-0",
       "h-full w-full",
       "flex items-center justify-center",
-      "[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]",
+      "[mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
     )}
   >
     {children}
@@ -23,7 +23,7 @@ export const GradiantBackground: React.FC<{ children?: React.ReactNode }> = ({
       "absolute pointer-events-none inset-0",
       "h-full w-full",
       "flex items-center justify-center",
-      "bg-gradient-to-b from-foreground-50/70 to-transparent",
+      "bg-gradient-to-b from-foreground-50/70 to-transparent"
     )}
   >
     {children}

@@ -3,8 +3,8 @@ import React, { useRef, useMemo, forwardRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useTheme } from "next-themes";
-import { ThemeColors } from "@heroui/theme";
-import { semanticColors } from "@heroui/theme/colors";
+import { ThemeColors } from "@heroui/react";
+import { semanticColors } from "@heroui/react";
 
 interface SpaceObject {
   mass: number;
@@ -59,7 +59,7 @@ const Sphere = forwardRef<THREE.Group, { radius: number; color: string }>(
         ))}
       </group>
     );
-  },
+  }
 );
 
 const OrbitingSystem: React.FC<OrbitingSpheresProps> = ({ objects }) => {
@@ -122,13 +122,13 @@ const OrbitingSystem: React.FC<OrbitingSpheresProps> = ({ objects }) => {
     refs.current[0].position.set(
       r1 * Math.cos(angles.current[0]),
       0,
-      r1 * Math.sin(angles.current[0]),
+      r1 * Math.sin(angles.current[0])
     );
 
     refs.current[1].position.set(
       -r2 * Math.cos(angles.current[0]),
       0,
-      -r2 * Math.sin(angles.current[0]),
+      -r2 * Math.sin(angles.current[0])
     );
   });
 

@@ -42,7 +42,7 @@ export function useSections() {
     const observer = new MutationObserver(handleSections);
 
     // Start observing the document with configured parameters
-    observer.observe(document.head, {
+    observer.observe(document.body, {
       childList: true,
       subtree: true,
     });

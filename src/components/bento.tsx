@@ -1,15 +1,17 @@
 "use client";
-import React, { useRef } from "react";
+import React, { Suspense, useRef } from "react";
 import {
   AnimatePresence,
   motion,
   Reorder,
   useDragControls,
+  DragControls,
 } from "framer-motion";
 import { tv } from "tailwind-variants";
 import { cn } from "@heroui/theme";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Grip } from "lucide-react";
+import { Skeleton } from "@heroui/skeleton";
 
 // Types and Constants
 export type BentoSizes = "compact" | "wide" | "tall" | "canvas";
@@ -20,7 +22,7 @@ const bentoStyles = tv({
   base: "w-full rounded h-full relative from-content1 border border-default-200 bg-opacity-75 to-background bg-gradient-to-tr",
   variants: {
     size: {
-      compact: "col-span-1 row-span-1",
+      compact: "col-span-1 row-span-1 aspect-square",
       wide: "col-span-4 row-span-2",
       tall: "col-span-2 row-span-4",
       canvas: "col-span-4 row-span-4",
@@ -51,24 +53,18 @@ interface ResizerProps {
 const Resizer: React.FC<ResizerProps> = ({ position, size, setSize }) => {
   const dragStartPos = useRef<{ x: number; y: number } | null>(null);
 
-  const handleDragStart = (e: React.DragEvent) => {
-    console.log("drag start");
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
     dragStartPos.current = { x: e.clientX, y: e.clientY };
   };
 
-  const handleDrag = (e: React.DragEvent) => {
+  const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
     if (!dragStartPos.current || !e.clientX || !e.clientY) return;
 
     const deltaX = e.clientX - dragStartPos.current.x;
     const deltaY = e.clientY - dragStartPos.current.y;
-    const threshold = 5; // Minimum drag distance to trigger resize
-    console.table({
-      deltaX,
-      deltaY,
-      size,
-    });
+    const threshold = 5;
+
     if (Math.abs(deltaX) > threshold || Math.abs(deltaY) > threshold) {
-      // Determine if we're making the box bigger or smaller
       const isIncreasing = deltaX + deltaY > 0;
       setSize(getNextSize(size, isIncreasing ? "increase" : "decrease"));
       dragStartPos.current = { x: e.clientX, y: e.clientY };
@@ -95,7 +91,7 @@ const Resizer: React.FC<ResizerProps> = ({ position, size, setSize }) => {
 };
 
 // BentoGrid Component
-interface BentoGridProps extends React.HTMLProps<HTMLUListElement> {
+interface BentoGridProps extends React.HTMLAttributes<HTMLUListElement> {
   items: string[];
   name: string;
   children: React.ReactNode;
@@ -118,15 +114,22 @@ export const BentoGrid = React.forwardRef<HTMLUListElement, BentoGridProps>(
       <Reorder.Group
         as="ul"
         axis="y"
-        values={items!}
+        values={items || []}
         onReorder={setItems}
         className={cn(
-          "grid grid-auto-cols-dense",
-          "grid-cols-[repeat(auto-fill,128px)]",
-          "grid-rows-[repeat(2,128px)] auto-rows-[minmax(128px,auto)]",
-          "w-full h-full gap-4 p-6",
+          "grid",
+          "grid-cols-[repeat(auto-fill,var(--cell-size))]",
+          "auto-rows-[var(--cell-size)]",
+          "w-full gap-4 p-6 place-items-center",
+          "max-h-[calc(4*var(--cell-size)+5*1rem)]",
           className,
         )}
+        style={
+          {
+            "--cell-size": "min(15vw, 128px)",
+            gridAutoFlow: "row",
+          } as React.CSSProperties
+        }
         ref={ref}
         {...props}
       >
@@ -139,29 +142,28 @@ export const BentoGrid = React.forwardRef<HTMLUListElement, BentoGridProps>(
 BentoGrid.displayName = "BentoGrid";
 
 // BentoBox Component
-interface BentoBoxProps extends React.HTMLProps<HTMLLIElement> {
-  size?: BentoSizes;
+interface BentoBoxProps extends React.HTMLAttributes<HTMLLIElement> {
+  size: BentoSizes;
+  id?: string;
 }
 
 export const BentoBox = React.forwardRef<HTMLLIElement, BentoBoxProps>(
-  ({ size = "compact", className, children, ...props }, ref) => {
+  ({ size, className, children, ...props }, ref) => {
     const controls = useDragControls();
-    const value = props.id ?? (props.key as string);
+    const value = props.id || Math.random().toString();
     const [currentSize, setCurrentSize] = useLocalStorage<BentoSizes>(
       value,
       size,
     );
-    console.log(value, currentSize);
 
     return (
       <Reorder.Item
         ref={ref}
-        as="li"
         value={value}
         drag
         className={cn(
           "relative",
-          bentoStyles({ size: currentSize }),
+          bentoStyles({ size: currentSize || size }),
           className,
         )}
         dragListener={currentSize === "compact"}
@@ -170,9 +172,13 @@ export const BentoBox = React.forwardRef<HTMLLIElement, BentoBoxProps>(
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         layout
-        {...props}
+        {...(props as any)}
       >
-        <Resizer position="br" size={currentSize} setSize={setCurrentSize} />
+        <Resizer
+          position="br"
+          size={currentSize || size}
+          setSize={setCurrentSize}
+        />
         {children}
         {currentSize !== "compact" && (
           <Grip

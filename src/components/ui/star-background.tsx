@@ -36,7 +36,6 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 }) => {
   const { theme } = useTheme();
   const [fillColor, setFillColor] = useState("");
-  console.log(fillColor);
 
   useEffect(() => {
     setFillColor(

@@ -11,6 +11,7 @@ import { ChevronDown } from "lucide-react";
 import { LogoOutline, SVGGradientDef, SVGGradientDefDiagonal } from "../icons";
 import NextLink from "next/link";
 import { useRef } from "react";
+import { gradientColors } from "@/config/site";
 
 export const IntroSection = () => {
   const { theme } = useTheme();
@@ -20,10 +21,10 @@ export const IntroSection = () => {
       id="intro"
       title="Opening"
       icon="Signature"
-      className="relative flex flex-col items-center justify-center md:flex-row min-h-screen gap-0 w-full mt-32 md:mt-0"
+      className="relative flex flex-col items-center justify-center min-h-screen gap-0 w-full mt-32 md:mt-0"
     >
       <ShootingStars />
-      {theme === "dark" && (
+      {theme && theme === "dark" && (
         <>
           <StarsBackground />
           <Spotlight />
@@ -55,24 +56,16 @@ export const IntroSection = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -50 }}
         transition={{ duration: 0.5, type: "spring" }}
-        className="flex flex-col items-center justify-center gap-4 w-full z-10"
+        layout
+        className="relative flex flex-col items-center sm:ml-32 sm:mb-0 max-w-7xl sm:items-start gap-2 w-full z-10  mb-[50vh]"
       >
-        <h1 className="text-4xl lg:text-6xl font-bold text-foreground text-center">
-          Hi, I'm <FlipWords words={["Artrix", "Sefu"]} />
+        <h4 className="text-sm text-default-500">👋 Hi, I'm </h4>{" "}
+        <h1 className="text-6xl font-bold inline-flex items-end gap-2 text-foreground text-center">
+          <FlipWords words={["Artrix", "Sefu"]} />
         </h1>
-        <p className="text-xl text-muted-foreground text-center max-w-2xl">
+        <p className="text-xl text-muted-foreground text-center max-w-[85vw]">
           Exploring the digital universe through code and creativity
         </p>
-        <NextLink href="#about" scroll className="animate-bounce mt-32">
-          <ChevronDown
-            style={{
-              animation: "hueRotate 1s linear infinite",
-            }}
-            className="h-12 w-12 *:stroke-[url(#linear-gradient)]"
-          >
-            <SVGGradientDef />
-          </ChevronDown>
-        </NextLink>
       </motion.div>
     </Section>
   );

@@ -15,12 +15,61 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import { siteConfig } from "@/config/site";
 import { SearchIcon, LogoOutline, Logo } from "@/components/icons";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownItem,
+  DropdownMenu,
+} from "@heroui/dropdown";
 
 export const Navbar = ({
   parentRef,
 }: {
   parentRef?: React.RefObject<HTMLElement>;
 }) => {
+  const renderNavItem = (item: (typeof siteConfig.navItems)[number]) => {
+    console.log(item);
+    if (item.children) {
+      return (
+        <Dropdown key={item.href}>
+          <DropdownTrigger>
+            <NavbarItem>
+              <div
+                className={clsx(
+                  linkStyles({ color: "foreground", underline: "hover" }),
+                  "data-[active=true]:text-primary data-[active=true]:font-medium cursor-pointer",
+                )}
+              >
+                {item.label}
+              </div>
+            </NavbarItem>
+          </DropdownTrigger>
+          <DropdownMenu>
+            {item.children.map((child) => (
+              <DropdownItem key={child.label}>
+                <NextLink href={child.href}>{child.label}</NextLink>
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
+      );
+    }
+
+    return (
+      <NavbarItem key={item.href}>
+        <NextLink
+          href={item.href}
+          className={clsx(
+            linkStyles({ color: "foreground", underline: "hover" }),
+            "data-[active=true]:text-primary data-[active=true]:font-medium",
+          )}
+        >
+          {item.label}
+        </NextLink>
+      </NavbarItem>
+    );
+  };
+
   return (
     <HeroUINavbar
       shouldHideOnScroll
@@ -39,23 +88,9 @@ export const Navbar = ({
       </NavbarContent>
       <NavbarContent className="sm:flex basis-1/5 sm:basis-full" justify="end">
         <ul className="flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles({ color: "foreground", underline: "hover" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
-                )}
-                color="foreground"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
+          {siteConfig.navItems.map(renderNavItem)}
         </ul>
       </NavbarContent>
-
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navItems.map((item, index) => (
@@ -68,7 +103,7 @@ export const Navbar = ({
                       ? "danger"
                       : "foreground"
                 }
-                href="#"
+                href={item.href}
                 size="lg"
               >
                 {item.label}

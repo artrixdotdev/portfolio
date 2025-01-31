@@ -7,7 +7,7 @@ export function useLocalStorage<T>(
 ): readonly [T, (value: T | ((prev: T) => T)) => void] {
   const getStoredValue = (): T => {
     if (typeof window === "undefined")
-      return [initialValue, (...props: any[]) => void 0];
+      return [initialValue, (...props: any[]) => void 0] as any;
 
     try {
       const item = window.localStorage.getItem(key);
@@ -40,5 +40,5 @@ export function useLocalStorage<T>(
     }
   };
 
-  return [storedValue, setValue] as const;
+  return [storedValue, setValue as any] as const;
 }

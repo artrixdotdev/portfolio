@@ -1,38 +1,52 @@
+import { Hash, FileText, GithubIcon, TwitterIcon } from "lucide-react";
+import { JSX } from "react";
+
 export type SiteConfig = typeof siteConfig;
+
+const links = {
+  github: "https://github.com/artrixdotdev",
+  twitter: "https://twitter.com/artrix909",
+  discord: "artrix_",
+} as const;
+
+export type NavItem = {
+  label: string;
+  href: string;
+  icon: JSX.Element;
+  children?: NavItem[];
+};
+
+const navItems = [
+  {
+    label: "Socials",
+    href: "/socials",
+    icon: <Hash />,
+    children: [
+      {
+        label: "Github",
+        href: links.github,
+        icon: <GithubIcon />,
+      },
+      {
+        label: "Twitter",
+        href: links.twitter,
+        icon: <TwitterIcon />,
+      },
+    ],
+  },
+  {
+    label: "Resume",
+    href: "/resume",
+    icon: <FileText />,
+  },
+] as NavItem[];
 
 export const siteConfig = {
   name: "Artrix",
   description:
     "🪐 A space enthusiast that just happens to be a developer; or the other way around...",
-  menuItems: [
-    {
-      label: "Projects",
-      href: "/projects",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
-      label: "About",
-      href: "/about",
-    },
-  ],
-  navItems: [
-    {
-      label: "Socials",
-      href: "/socials",
-    },
-    {
-      label: "Resume",
-      href: "/resume",
-    },
-  ],
-  links: {
-    github: "https://github.com/artrixdotdev",
-    twitter: "https://twitter.com/artrix909",
-    discord: "artrix_",
-  },
+  navItems,
+  links,
 } as const;
 
 export const gradientColors = [

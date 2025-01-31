@@ -125,6 +125,7 @@ export const LogoOutline = (props: React.SVGProps<SVGSVGElement>) => {
       height="24"
       {...props}
     >
+      <SVGGradientDef />
       <path
         style={{
           animation: "hueRotate 1s linear infinite",

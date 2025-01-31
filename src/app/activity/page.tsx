@@ -4,10 +4,11 @@ import { Section } from "@/components/section";
 import { GithubContributionsGraph } from "@/components/activity/github-graphs";
 import { Button } from "@heroui/button";
 import { BentoBox, BentoGrid, BentoSizes } from "@/components/bento";
+import { DiscordBento } from "@/components/activity/boxes/discord";
+
 export default async function AboutPage() {
-  const items = (
-    ["wide", "tall", "compact", "compact", "compact", "compact"] as BentoSizes[]
-  ).map((s, _) => [`test${_}`, s] as const);
+  const bentos = [DiscordBento];
+  console.log(bentos.map(([Bento, { label }]) => <Bento key={label} />));
   return (
     <Section
       id="activity"
@@ -17,14 +18,12 @@ export default async function AboutPage() {
     >
       <BentoGrid
         name="activity-bento"
-        items={items.map(([id]) => id)}
+        items={bentos.map(([_, { label }]) => label)}
         className="min-h-screen"
       >
-        {items.map(([id, size]) => (
-          <BentoBox className="border" key={id} id={id} size={size}>
-            {id}
-          </BentoBox>
-        ))}
+        <BentoBox size="compact" id="discord">
+          Hi
+        </BentoBox>
       </BentoGrid>
     </Section>
   );

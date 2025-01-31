@@ -24,7 +24,7 @@ export const IntroSection = () => {
       className="relative flex flex-col items-center justify-center min-h-screen gap-0 w-full mt-32 md:mt-0"
     >
       <ShootingStars />
-      {theme && theme === "dark" && (
+      {theme !== "light" && (
         <>
           <StarsBackground />
           <Spotlight />

@@ -15,23 +15,35 @@ import { link as linkStyles } from "@heroui/react";
 import NextLink from "next/link";
 import clsx from "clsx";
 import { siteConfig } from "@/config/site";
-import { SearchIcon, LogoOutline, Logo } from "@/components/icons";
+import {
+  SearchIcon,
+  LogoOutline,
+  Logo,
+  ArrowRightIcon,
+} from "@/components/icons";
 import {
   Dropdown,
   DropdownTrigger,
   DropdownItem,
   DropdownMenu,
 } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 export const Navbar = ({
   parentRef,
 }: {
   parentRef?: React.RefObject<HTMLElement>;
 }) => {
+  const router = useRouter();
   const renderNavItem = (item: (typeof siteConfig.navItems)[number]) => {
     if (item.children) {
       return (
-        <Dropdown key={item.href}>
+        <Dropdown
+          classNames={{
+            content: "w-min",
+          }}
+          key={item.href}
+        >
           <DropdownTrigger>
             <NavbarItem>
               <div
@@ -46,8 +58,21 @@ export const Navbar = ({
           </DropdownTrigger>
           <DropdownMenu>
             {item.children.map((child) => (
-              <DropdownItem key={child.label}>
-                <NextLink href={child.href}>{child.label}</NextLink>
+              <DropdownItem
+                className="rounded-md"
+                startContent={child.icon}
+                endContent={child.endContent}
+                description={child.description}
+                key={child.label}
+                href={child.href}
+                onClick={() =>
+                  child.href.startsWith("/")
+                    ? router.push(child.href)
+                    : window.open(child.href, "_blank")
+                } // Workaround bc heroui is bugged
+                target="_blank"
+              >
+                {child.label}
               </DropdownItem>
             ))}
           </DropdownMenu>

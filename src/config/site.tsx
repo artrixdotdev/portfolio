@@ -1,4 +1,11 @@
-import { Hash, FileText, GithubIcon, TwitterIcon } from "lucide-react";
+import {
+  Hash,
+  FileText,
+  GithubIcon,
+  TwitterIcon,
+  LinkIcon,
+  ArrowRight,
+} from "lucide-react";
 import { JSX } from "react";
 
 export type SiteConfig = typeof siteConfig;
@@ -13,6 +20,8 @@ export type NavItem = {
   label: string;
   href: string;
   icon: JSX.Element;
+  description?: string;
+  endContent?: JSX.Element;
   children?: NavItem[];
 };
 
@@ -25,12 +34,20 @@ const navItems = [
       {
         label: "Github",
         href: links.github,
+        description: "@artrixdotdev",
         icon: <GithubIcon />,
       },
       {
         label: "Twitter",
         href: links.twitter,
+        description: "@artrix909",
         icon: <TwitterIcon />,
+      },
+      {
+        label: "View all",
+        href: "/socials",
+        icon: <LinkIcon />,
+        endContent: <ArrowRight />,
       },
     ],
   },

@@ -49,7 +49,7 @@ const sectionStyles = cn(
 
 const contentWrapperStyles = cn(
   "relative flex flex-col z-10 w-full max-w-7xl gap-2 mb-[50vh]",
-  "items-center sm:items-start sm:ml-32 sm:mb-0",
+  "items-center sm:items-start sm:mb-0",
 );
 
 export const IntroSection = () => {
@@ -138,7 +138,7 @@ export const AboutSection = () => {
         variants={smoothAnimation}
         initial="initial"
         whileInView="animate"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true }}
         layout
         className={cn(contentWrapperStyles, "items-center sm:items-center")}
       >
@@ -170,6 +170,7 @@ export const AboutSection = () => {
         >
           I'm a Full Stack Software Engineer who is not here to waste your time.
         </motion.p>
+        <div></div>
       </motion.div>
     </Section>
   );

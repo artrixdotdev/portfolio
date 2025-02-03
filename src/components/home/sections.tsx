@@ -49,7 +49,7 @@ const sectionStyles = cn(
 
 const contentWrapperStyles = cn(
   "relative flex flex-col z-10 w-full max-w-7xl gap-2 mb-[50vh]",
-  "items-center sm:items-start sm:mb-0",
+  "items-center sm:items-start sm:ml-32 sm:mb-0",
 );
 
 export const IntroSection = () => {
@@ -140,7 +140,11 @@ export const AboutSection = () => {
         whileInView="animate"
         viewport={{ once: true }}
         layout
-        className={cn(contentWrapperStyles, "items-center sm:items-center")}
+        className={cn(
+          contentWrapperStyles,
+          "items-center sm:items-center",
+          "sm:ml-0",
+        )}
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}

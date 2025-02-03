@@ -50,3 +50,31 @@ export const getContributions = cache(async () => {
   return data.data.user.contributionsCollection
     .contributionCalendar as ContributionsCalender;
 });
+
+export const getFollowers = cache(async () => {
+  const query = `
+      {
+        user(login: "artrixdotdev") {
+          followers {
+            totalCount
+          }
+        }
+      }
+    `;
+  // TODO: Add caching
+  const response = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  if (!response.ok) {
+    const error = (await response.json()).message;
+    throw new Error(`Failed to fetch followers: ${response.status} | ${error}`);
+  }
+
+  const data = await response.json();
+  return data.data.user.followers.totalCount;
+});

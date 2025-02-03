@@ -5,9 +5,9 @@ import {
   TwitterIcon,
   LinkIcon,
   ArrowRight,
+  UserIcon,
 } from "lucide-react";
-import { JSX } from "react";
-
+import React, { JSX } from "react";
 export type SiteConfig = typeof siteConfig;
 
 const links = {
@@ -21,7 +21,7 @@ export type NavItem = {
   href: string;
   icon: JSX.Element;
   description?: string;
-  endContent?: JSX.Element;
+  endContent?: JSX.Element | React.FC;
   children?: NavItem[];
 };
 
@@ -36,6 +36,27 @@ const navItems = [
         href: links.github,
         description: "@artrixdotdev",
         icon: <GithubIcon />,
+        endContent() {
+          const [user, setUser] = React.useState<any | null>(null);
+
+          React.useEffect(() => {
+            fetch("https://api.github.com/users/artrixdotdev")
+              .then((r) => r.json())
+              .then(setUser);
+          });
+
+          if (!user) return null;
+          return (
+            <a
+              href="https://github.com/artrixdotdev?tab=followers"
+              target="_blank"
+              className="inline-flex hover:bg-content2 transition-colors rounded-lg items-center p-2 gap-0.5"
+            >
+              <UserIcon className="w-4 h-4" />
+              <span>{user.followers}</span>
+            </a>
+          );
+        },
       },
       {
         label: "Twitter",

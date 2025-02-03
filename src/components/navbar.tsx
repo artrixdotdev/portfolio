@@ -61,7 +61,14 @@ export const Navbar = ({
               <DropdownItem
                 className="rounded-md"
                 startContent={child.icon}
-                endContent={child.endContent}
+                endContent={
+                  typeof child.endContent === "function" ? (
+                    // @ts-ignore
+                    <child.endContent />
+                  ) : (
+                    child.endContent
+                  )
+                }
                 description={child.description}
                 key={child.label}
                 href={child.href}

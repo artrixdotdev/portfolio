@@ -2,7 +2,7 @@
 import * as React from "react";
 export * from "lucide-react";
 import { IconSvgProps } from "@/types";
-import { gradientColors } from "@/config/site";
+import { gradientColors, SOCIAL_HANDLES } from "@/config/site";
 
 export const Logo: React.FC<IconSvgProps> = (props) => (
   <svg
@@ -178,3 +178,38 @@ export const SVGGradientDefDiagonal = () => (
     </linearGradient>
   </defs>
 );
+
+// Component for GitHub follower count
+const GithubFollowerCount: React.FC = () => {
+  const [user, setUser] = React.useState<{ followers?: number } | null>(null);
+
+  React.useEffect(() => {
+    const fetchGithubUser = async () => {
+      try {
+        const response = await fetch(
+          "https://api.github.com/users/" + SOCIAL_HANDLES.github,
+        );
+        const userData = await response.json();
+        setUser(userData);
+      } catch (error) {
+        console.error("Failed to fetch GitHub user data", error);
+      }
+    };
+
+    fetchGithubUser();
+  }, []);
+
+  if (!user?.followers) return null;
+
+  return (
+    <a
+      href={`https://github.com/${SOCIAL_HANDLES.github}?tab=followers`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex hover:bg-content2 transition-colors rounded-lg items-center p-2 gap-0.5"
+    >
+      <UserIcon className="w-4 h-4" />
+      <span>{user.followers}</span>
+    </a>
+  );
+};

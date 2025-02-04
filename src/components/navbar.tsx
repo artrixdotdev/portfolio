@@ -14,7 +14,7 @@ import { Input } from "@heroui/react";
 import { link as linkStyles } from "@heroui/react";
 import NextLink from "next/link";
 import clsx from "clsx";
-import { siteConfig } from "@/config/site";
+import { SITE_CONFIG } from "@/config/site";
 import {
   SearchIcon,
   LogoOutline,
@@ -35,15 +35,10 @@ export const Navbar = ({
   parentRef?: React.RefObject<HTMLElement>;
 }) => {
   const router = useRouter();
-  const renderNavItem = (item: (typeof siteConfig.navItems)[number]) => {
+  const renderNavItem = (item: (typeof SITE_CONFIG.navItems)[number]) => {
     if (item.children) {
       return (
-        <Dropdown
-          classNames={{
-            content: "w-min",
-          }}
-          key={item.href}
-        >
+        <Dropdown key={item.href}>
           <DropdownTrigger>
             <NavbarItem>
               <div
@@ -120,18 +115,18 @@ export const Navbar = ({
       </NavbarContent>
       <NavbarContent className="sm:flex basis-1/5 sm:basis-full" justify="end">
         <ul className="flex gap-4 justify-start ml-2">
-          {siteConfig.navItems.map(renderNavItem)}
+          {SITE_CONFIG.navItems.map(renderNavItem)}
         </ul>
       </NavbarContent>
       <NavbarMenu>
         <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navItems.map((item, index) => (
+          {SITE_CONFIG.navItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
                 color={
                   index === 2
                     ? "primary"
-                    : index === siteConfig.navItems.length - 1
+                    : index === SITE_CONFIG.navItems.length - 1
                       ? "danger"
                       : "foreground"
                 }

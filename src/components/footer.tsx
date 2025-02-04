@@ -1,5 +1,5 @@
 "use client";
-import { siteConfig } from "@/config/site";
+import { SITE_CONFIG } from "@/config/site";
 import { Switch } from "@heroui/react";
 import { Link } from "@heroui/react";
 import { GithubIcon, LogoText, MoonIcon, SunIcon } from "@/components/icons";
@@ -9,7 +9,7 @@ import { link } from "@heroui/react";
 
 export function Footer() {
   const { setTheme, theme } = useTheme();
-  const socials = siteConfig.links;
+  const socials = SITE_CONFIG.links;
 
   return (
     <footer id="footer" className="container mx-auto px-4 py-10">

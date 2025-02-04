@@ -3,7 +3,7 @@ import { Metadata, Viewport } from "next";
 import clsx from "clsx";
 
 import { Providers } from "./providers";
-import { siteConfig, gradientColors } from "@/config/site";
+import { SITE_CONFIG, gradientColors } from "@/config/site";
 import { fontMono, fontSans } from "@/config/fonts";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -12,10 +12,10 @@ import { NavigationPill } from "@/components/navpill";
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: SITE_CONFIG.name,
+    template: `%s - ${SITE_CONFIG.name}`,
   },
-  description: siteConfig.description,
+  description: SITE_CONFIG.description,
   icons: [{ rel: "icon", url: "/favicon.svg", type: "image/svg+xml" }],
 };
 
@@ -87,7 +87,7 @@ export default function RootLayout({
         className={clsx(
           "min-h-screen relative bg-background font-sans antialiased *:text-foreground",
           fontSans.variable,
-          fontMono.variable
+          fontMono.variable,
         )}
       >
         <Providers

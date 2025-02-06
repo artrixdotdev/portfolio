@@ -1,11 +1,11 @@
 code span {
-  @apply font-mono font-[500];
+   @apply font-mono font-[500];
 }
 
 html pre span {
-  color: var(--shiki-light);
+   color: var(--shiki-light);
 }
 
 html.dark pre span {
-  color: var(--shiki-dark);
+   color: var(--shiki-dark);
 }

@@ -1,13 +1,15 @@
 "use client";
 import "@/styles/code-theme.css";
 export default function BlogLayout({
-  children,
+   children,
 }: {
-  children: React.ReactNode;
+   children: React.ReactNode;
 }) {
-  return (
-    <div className="flex flex-col mt-12 items-center justify-center gap-4 py-8 md:py-10">
-      {children}
-    </div>
-  );
+   return (
+      <div className="w-full flex flex-col mt-24 items-center justify-center">
+         <div className="grid w-[800px] max-w-[80%] gap-8 mb-32">
+            {children}
+         </div>
+      </div>
+   );
 }

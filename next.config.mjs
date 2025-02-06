@@ -11,28 +11,28 @@ const plugins = [];
 
 /** @type {NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  transpilePackages: ["three"],
-  pageExtensions: ["md", "mdx", "tsx", "ts", "jsx", "js"],
+   reactStrictMode: true,
+   transpilePackages: ["three"],
+   pageExtensions: ["md", "mdx", "tsx", "ts", "jsx", "js"],
 };
 
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
-  keepBackground: true,
-  theme: {
-    dark: "material-theme-ocean",
-    light: "github-light",
-  },
+   keepBackground: false,
+   theme: {
+      dark: "material-theme-ocean",
+      light: "github-light",
+   },
 };
 
 plugins.push(
-  nextMDX({
-    extension: /\.(md|mdx)$/,
-    options: {
-      remarkPlugins: [],
-      rehypePlugins: [[rehypePrettyCode, options], rehypeSlug],
-    },
-  }),
+   nextMDX({
+      extension: /\.(md|mdx)$/,
+      options: {
+         remarkPlugins: [],
+         rehypePlugins: [[rehypePrettyCode, options], rehypeSlug],
+      },
+   }),
 );
 
 export default () => plugins.reduce((_, plugin) => plugin(_), nextConfig);

@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 @keyframes hueRotate {
-  0% {
-    filter: hue-rotate(0deg);
-  }
-  100% {
-    filter: hue-rotate(-360deg);
-  }
+   0% {
+      filter: hue-rotate(0deg);
+   }
+   100% {
+      filter: hue-rotate(-360deg);
+   }
 }
 
 @layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
+   body {
+      @apply bg-background text-foreground;
+   }
 }

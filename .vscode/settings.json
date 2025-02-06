@@ -1,10 +1,10 @@
 {
-  "tailwindCSS.classAttributes": [
-    "class",
-    "className",
-    "classNames",
-    "ngClass",
-    "containerClassName"
-  ],
-  "svg.preview.background": "dark-transparent"
+   "tailwindCSS.classAttributes": [
+      "class",
+      "className",
+      "classNames",
+      "ngClass",
+      "containerClassName"
+   ],
+   "svg.preview.background": "dark-transparent"
 }

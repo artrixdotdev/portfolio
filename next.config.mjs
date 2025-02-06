@@ -19,6 +19,10 @@ const nextConfig = {
 /** @type {import('rehype-pretty-code').Options} */
 const options = {
   keepBackground: true,
+  theme: {
+    dark: "material-theme-ocean",
+    light: "github-light",
+  },
 };
 
 plugins.push(

@@ -1,0 +1,132 @@
+:root {
+  /* Theme colors */
+  --code-base: #8f93a2;
+  --code-bg: #0f111a;
+  --code-comment: #464b5d;
+  --code-attr-name: #bb80b3;
+  --code-function: #82aaff;
+  --code-numeric: #f78c6c;
+  --code-class: #ffcb6b;
+  --code-keyword: #c792ea;
+  --code-string: #c3e88d;
+  --code-punctuation: #89ddff;
+  --code-tag: #f07178;
+  --code-parameter: #ff5370;
+}
+
+/* Base code styles */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: var(--code-base);
+  background: none;
+  @apply text-base text-left leading-normal;
+  @apply whitespace-pre break-normal p-4;
+  @apply rounded-md;
+  @apply font-mono;
+  @apply hyphens-none;
+}
+
+/* Container styles */
+pre[class*="language-"] {
+  @apply overflow-auto;
+  background: var(--code-bg);
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  @apply p-1;
+  @apply whitespace-normal;
+  background: var(--code-bg);
+}
+
+/* Token colors */
+.token.script.language-javascript {
+  color: var(--code-base);
+}
+
+.token.comment,
+.token.block-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: var(--code-comment);
+}
+
+.token.attr-name,
+.token.namespace,
+.token.deleted {
+  color: var(--code-attr-name);
+}
+
+.token.function,
+.token.function-name {
+  color: var(--code-function);
+}
+
+.token.unit,
+.token.url,
+.token.boolean,
+.token.number {
+  color: var(--code-numeric);
+}
+
+.token.color,
+.token.hexcode,
+.token.builtin,
+.token.property,
+.token.class,
+.token.class-name,
+.token.constant,
+.token.symbol {
+  color: var(--code-class);
+}
+
+.token.id,
+.token.selector,
+.token.important,
+.token.atrule,
+.token.keyword {
+  color: var(--code-keyword);
+}
+
+.token.pseudo-class,
+.token.pseudo-element,
+.token.inserted,
+.token.attribute,
+.token.string,
+.token.char,
+.token.attr-value,
+.token.regex,
+.token.variable {
+  color: var(--code-string);
+}
+
+.token.punctuation,
+.token.operator,
+.token.entity,
+.token.url {
+  color: var(--code-punctuation);
+}
+
+.token.tag {
+  color: var(--code-tag);
+}
+
+.token.parameter,
+.token.deleted {
+  color: var(--code-parameter);
+}
+
+/* Typography modifiers */
+.token.important,
+.token.bold {
+  @apply font-bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}

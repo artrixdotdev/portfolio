@@ -1,5 +1,5 @@
 code,
-span {
+.line {
    @apply font-mono font-[500];
 }
 
@@ -17,4 +17,15 @@ html.light pre {
 
 html.dark pre span {
    color: var(--shiki-dark);
+}
+
+.diff.remove {
+   @apply bg-danger-100/50 opacity-70;
+}
+.diff.add {
+   @apply bg-success-100/60;
+}
+
+.diff {
+   @apply w-max;
 }

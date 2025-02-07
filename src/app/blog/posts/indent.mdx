@@ -33,11 +33,13 @@ A 2-space indent can feel cramped, especially in deeply nested code. For example
 
 ```javascript
 // 2-space indent
+// [!code highlight:3]
 function calculateScore() {
    if (user.isActive) {
       let score = user.points * 10;
       if (score > 100) {
-         return "Gold";
+         return "Gold"; // [!code --]
+         return "Plat"; // [!code ++]
       } else {
          return "Silver";
       }

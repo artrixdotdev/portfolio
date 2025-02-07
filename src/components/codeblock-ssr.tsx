@@ -7,6 +7,7 @@ import { toJsxRuntime } from "hast-util-to-jsx-runtime";
 import { Fragment } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { codeToHast } from "shiki";
+import { transformerNotationDiff } from "@shikijs/transformers";
 
 export async function CodeBlock({
    code,
@@ -22,6 +23,11 @@ export async function CodeBlock({
       lang: lang,
       defaultColor: false,
       themes,
+      transformers: [
+         transformerNotationDiff({
+            matchAlgorithm: "v3",
+         }),
+      ],
    });
 
    return toJsxRuntime(out, {

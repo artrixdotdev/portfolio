@@ -14,14 +14,13 @@ export function useSections() {
    const pathname = usePathname();
 
    const handleSections = () => {
-      console.log("handleSections");
       const sections = document.querySelectorAll("section");
       const newSections = Array.from(sections)
          .map((section) => {
             let _icons = Icons as any;
             const icon = section.getAttribute("aria-label") as any;
             if (!(icon in _icons)) {
-               console.error(
+               console.warn(
                   `Icon ${icon} (${section.title}#${section.id}) not found in lucide-react`,
                );
                return null;

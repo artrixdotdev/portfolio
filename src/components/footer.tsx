@@ -22,7 +22,9 @@ export function Footer() {
                   <button
                      className={link({ color: "foreground" })}
                      onMouseDown={() =>
-                        navigator.clipboard.writeText(socials.discord)
+                        navigator.clipboard.writeText(
+                           SITE_CONFIG.handles.discord,
+                        )
                      }
                   >
                      <DiscordIcon className="h-6 w-6" />

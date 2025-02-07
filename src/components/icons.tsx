@@ -3,6 +3,7 @@ import * as React from "react";
 export * from "lucide-react";
 import { IconSvgProps } from "@/types";
 import { gradientColors, SOCIAL_HANDLES } from "@/config/site";
+import { UserIcon } from "lucide-react";
 
 export const Logo: React.FC<IconSvgProps> = (props) => (
    <svg

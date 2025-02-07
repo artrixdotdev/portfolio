@@ -7,7 +7,7 @@ import {
 } from "@/components/home/sections";
 import { GradiantBackground } from "@/components/radial-gradient";
 
-export default function Home() {
+export default async function Home() {
    return (
       <>
          <GradiantBackground />

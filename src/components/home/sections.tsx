@@ -18,7 +18,8 @@ import NextLink from "next/link";
 import { useRef } from "react";
 import { gradientColors } from "@/config/site";
 import { cn } from "@heroui/react";
-
+import { CodeBlock } from "../codeblock";
+import { Suspense } from "react";
 const smoothAnimation = {
    initial: {
       opacity: 0,
@@ -182,12 +183,8 @@ export const AboutSection = () => {
 };
 
 export const ProjectsSection = () => (
-   <Section
-      id="projects"
-      title="Projects"
-      icon="CodeXml"
-      className="flex flex-col items-center justify-center md:flex-row min-h-screen gap-0 w-full mt-32 md:mt-0"
-   >
+   <Section id="projects" title="Projects" icon="CodeXml">
+      <CodeBlock code={`<React />`} lang="tsx" />
       Soon
    </Section>
 );

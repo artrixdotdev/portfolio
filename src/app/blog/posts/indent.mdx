@@ -1,3 +1,10 @@
+---
+Title: Why Indent Width 3 is the Perfect Compromise
+publishedAt: 2025-02-05T00:00:00.000Z
+summary: Why Indent Width 3 is the Perfect Compromise
+---
+
+
 # Why Indent Width 3 is the Perfect Compromise
 
 If you’ve ever watched a developer’s face contort in rage during a tabs-vs-spaces debate, you know how **religious** these formatting discussions can get. But today, I’m here to talk about something even more contentious: **indent width**. Specifically, why I’ve abandoned the 2-space and 4-space camps for the _controversial_ yet _perfectly balanced_ **indent width of 3**.
@@ -100,12 +107,12 @@ Most modern tools (Prettier, ESLint, etc.) let you customize indent width. If yo
 
 1. **Update your configs**:
 
-   ```json .prettierrc
+   ```jsonc .prettierrc
    {
-      \\ "tabWidth": 2
-      "tabWidth": 3
+      // [!code highlight:2]
+      "tabWidth": 2, // [!code --]
+      "tabWidth": 3 // [!code ++]
    }
-
    ```
 
 2. **Gaslight your team**:  
@@ -120,6 +127,11 @@ Indentation is a tool, not a dogma. By choosing **3 spaces**, you’re not just 
 
 Will the world burn? Maybe. But at least your code will look **spicy** while it does. 🔥
 
----
+
+Table example
+
+
+
+
 
 _Still angry? Good. Now go try it for a week._

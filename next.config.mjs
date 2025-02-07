@@ -3,8 +3,6 @@
  * @typedef {Array<((config: NextConfig) => NextConfig)>} NextConfigPlugins
  */
 import nextMDX from "@next/mdx";
-import rehypeSlug from "rehype-slug";
-import rehypePrettyCode from "rehype-pretty-code";
 
 /** @type {NextConfigPlugins} */
 const plugins = [];
@@ -16,22 +14,9 @@ const nextConfig = {
    pageExtensions: ["md", "mdx", "tsx", "ts", "jsx", "js"],
 };
 
-/** @type {import('rehype-pretty-code').Options} */
-const options = {
-   keepBackground: false,
-   theme: {
-      dark: "material-theme-ocean",
-      light: "github-light",
-   },
-};
-
 plugins.push(
    nextMDX({
       extension: /\.(md|mdx)$/,
-      options: {
-         remarkPlugins: [],
-         rehypePlugins: [[rehypePrettyCode, options], rehypeSlug],
-      },
    }),
 );
 

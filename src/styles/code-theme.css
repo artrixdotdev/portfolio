@@ -1,9 +1,18 @@
-code span {
+code,
+span {
    @apply font-mono font-[500];
 }
 
 html pre span {
    color: var(--shiki-light);
+}
+
+html.dark pre {
+   background-color: var(--shiki-dark-bg);
+}
+
+html.light pre {
+   background-color: var(--shiki-light-bg);
 }
 
 html.dark pre span {

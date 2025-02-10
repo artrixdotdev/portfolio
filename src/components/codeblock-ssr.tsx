@@ -8,6 +8,7 @@ import { Fragment } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { codeToHast } from "shiki";
 import { transformerNotationDiff } from "@shikijs/transformers";
+import { cn } from "@heroui/react";
 
 export async function CodeBlock({
    code,
@@ -35,7 +36,9 @@ export async function CodeBlock({
       jsx,
       jsxs,
       components: {
-         pre: (props) => <pre {...props} />,
+         pre: ({ className, ...props }) => (
+            <pre className={cn("w-full", className)} {...props} />
+         ),
       },
    }) as JSX.Element;
 }

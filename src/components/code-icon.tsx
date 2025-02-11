@@ -1,15 +1,12 @@
 "use client";
-import {
-   type ManifestConfig,
-   type IconAssociations,
-   type IconPackValue,
-   generateManifest,
-} from "material-icon-theme";
+import { type ManifestConfig, generateManifest } from "material-icon-theme";
 import { useMemo, useState } from "react";
 import Image from "next/image";
+
 export const CodeIcon: React.FC<{ filename: string | null }> = ({
    filename,
 }) => {
+   if (!filename) return null;
    const config: ManifestConfig = {};
    const manifest = useMemo(() => generateManifest(config), []);
    const [icon, setIcon] = useState<{ src: string } | undefined>();
@@ -25,7 +22,7 @@ export const CodeIcon: React.FC<{ filename: string | null }> = ({
          src={icon.src}
          width="32"
          height="32"
-         alt={filename || "file icon"}
+         alt={filename ?? "unknown" + " file icon"}
          className="w-6 h-6"
       />
    );

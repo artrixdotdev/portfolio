@@ -20,6 +20,7 @@ import {
    LogoOutline,
    Logo,
    ArrowRightIcon,
+   ChevronDown,
 } from "@/components/icons";
 import {
    Dropdown,
@@ -40,19 +41,20 @@ export const Navbar = ({
          return (
             <Dropdown key={item.href}>
                <DropdownTrigger>
-                  <NavbarItem>
+                  <NavbarMenuItem>
                      <div
                         className={clsx(
                            linkStyles({
                               color: "foreground",
                               underline: "hover",
                            }),
-                           "data-[active=true]:text-primary data-[active=true]:font-medium cursor-pointer",
+                           "data-[active=true]:text-primary inline-flex items-center justify-center gap-1 data-[active=true]:font-medium cursor-pointer",
                         )}
                      >
                         {item.label}
+                        <ChevronDown className="w-6 h-6" />
                      </div>
-                  </NavbarItem>
+                  </NavbarMenuItem>
                </DropdownTrigger>
                <DropdownMenu>
                   {item.children.map((child) => (
@@ -86,7 +88,7 @@ export const Navbar = ({
       }
 
       return (
-         <NavbarItem key={item.href}>
+         <NavbarMenuItem key={item.href}>
             <NextLink
                href={item.href}
                className={clsx(
@@ -96,7 +98,7 @@ export const Navbar = ({
             >
                {item.label}
             </NextLink>
-         </NavbarItem>
+         </NavbarMenuItem>
       );
    };
 
@@ -122,34 +124,24 @@ export const Navbar = ({
             </NavbarBrand>
          </NavbarContent>
          <NavbarContent
-            className="sm:flex basis-1/5 sm:basis-full"
+            className="hidden basis-1/5 sm:basis-full"
             justify="end"
          >
-            <ul className="flex gap-4 justify-start ml-2">
+            <NavbarMenu className="flex gap-4 justify-start ml-2">
+               {SITE_CONFIG.navItems.map(renderNavItem)}
+            </NavbarMenu>
+         </NavbarContent>
+         <NavbarContent
+            className="hidden lg:flex basis-1/5 sm:basis-full"
+            justify="end"
+         >
+            <ul className="flex gap-4 justify-start">
                {SITE_CONFIG.navItems.map(renderNavItem)}
             </ul>
          </NavbarContent>
-         <NavbarMenu>
-            <div className="mx-4 mt-2 flex flex-col gap-2">
-               {SITE_CONFIG.navItems.map((item, index) => (
-                  <NavbarMenuItem key={`${item}-${index}`}>
-                     <Link
-                        color={
-                           index === 2
-                              ? "primary"
-                              : index === SITE_CONFIG.navItems.length - 1
-                                ? "danger"
-                                : "foreground"
-                        }
-                        href={item.href}
-                        size="lg"
-                     >
-                        {item.label}
-                     </Link>
-                  </NavbarMenuItem>
-               ))}
-            </div>
-         </NavbarMenu>
+         <NavbarContent justify="end" className="flex lg:hidden">
+            <NavbarMenuToggle />
+         </NavbarContent>
       </HeroUINavbar>
    );
 };

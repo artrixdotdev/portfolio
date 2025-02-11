@@ -7,6 +7,7 @@ import {
    LinkIcon,
    ArrowRight,
    UserIcon,
+   Pencil,
 } from "lucide-react";
 
 // Define constant links with better typing
@@ -31,10 +32,22 @@ interface NavItem {
    description?: string;
    endContent?: React.FC | React.ReactElement;
    children?: NavItem[];
+   hide?: boolean;
 }
 
 // Centralized navigation items configuration
 const NAV_ITEMS: NavItem[] = [
+   {
+      label: "Resume",
+      href: "/resume",
+      icon: <FileText />,
+   },
+   {
+      label: "Blog",
+      href: "/blog",
+      icon: <Pencil />,
+   },
+
    {
       label: "Socials",
       href: "/socials",
@@ -60,11 +73,6 @@ const NAV_ITEMS: NavItem[] = [
             endContent: <ArrowRight />,
          },
       ],
-   },
-   {
-      label: "Resume",
-      href: "/resume",
-      icon: <FileText />,
    },
 ];
 

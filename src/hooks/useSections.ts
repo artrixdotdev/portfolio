@@ -14,21 +14,32 @@ export function useSections() {
    const pathname = usePathname();
 
    const handleSections = () => {
-      const sections = document.querySelectorAll("section");
+      const sections = pathname.includes("/blog")
+         ? (document.querySelectorAll(
+              "article h2",
+           ) as NodeListOf<HTMLHeadingElement>)
+         : (document.querySelectorAll("section") as NodeListOf<HTMLDivElement>);
       const newSections = Array.from(sections)
-         .map((section) => {
+         .map((section: HTMLSelectElement | HTMLHeadingElement) => {
             let _icons = Icons as any;
             const icon = section.getAttribute("aria-label") as any;
+            const title =
+               section.nodeName.startsWith("H") && section.innerText
+                  ? section.innerText
+                  : section?.title || section.id;
             if (!(icon in _icons)) {
                console.warn(
-                  `Icon ${icon} (${section.title}#${section.id}) not found in lucide-react`,
+                  `Icon ${icon} (${title}#${section.id}) not found in lucide-react`,
                );
-               return null;
             }
+
+            if (!section.id && !section) return null;
             return {
                id: section.id,
-               title: section.title || section.id,
-               SectionIcon: _icons[section.getAttribute("aria-label") as any],
+               title,
+               SectionIcon: icon
+                  ? _icons[section.getAttribute("aria-label") as any]
+                  : () => null,
             };
          })
          .filter((section): section is Section => section !== null);

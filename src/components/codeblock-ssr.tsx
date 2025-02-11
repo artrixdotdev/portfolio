@@ -13,6 +13,12 @@ import { Copy } from "lucide-react";
 import { CopyCode } from "./copy-code";
 import { CodeIcon } from "./code-icon";
 
+const removeNegativeDiffs = (code: string) =>
+   code
+      .split("\n")
+      .filter((line) => !line.endsWith("[!code --]"))
+      .join("\n");
+
 export async function CodeBlock({
    code,
    lang,
@@ -54,7 +60,10 @@ export async function CodeBlock({
                      </span>
                   </div>
                   <CopyCode
-                     code={code.replaceAll(/\/\/ \[!code.*?\]\n?/g, "")}
+                     code={removeNegativeDiffs(code).replaceAll(
+                        /\/\/ \[!code.*?\]\n?/g,
+                        "",
+                     )}
                   />
                </div>
                <pre

@@ -22,10 +22,40 @@ html.dark pre span {
 .diff.remove {
    @apply bg-danger-100/50 opacity-70;
 }
+
+.diff.remove::before {
+   content: "-";
+   @apply text-danger-300/80;
+}
+
+.diff.add::before {
+   content: "+";
+   @apply text-success-300;
+}
+
 .diff.add {
    @apply bg-success-100/60;
 }
 
+.diff::after {
+   content: " ";
+}
+
 .diff {
-   @apply w-max;
+   @apply w-max rounded;
+}
+
+.line::before {
+   content: counter(step);
+   counter-increment: step;
+   width: 1rem;
+   margin-right: 1.5rem;
+   display: inline-block;
+   text-align: right;
+   @apply text-foreground-300;
+}
+
+code {
+   counter-reset: step;
+   counter-increment: step 0;
 }

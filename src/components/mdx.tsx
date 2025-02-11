@@ -39,7 +39,11 @@ function createHeading(level: number) {
 
       return React.createElement(
          `h${level}`,
-         { id: slug, className: cn("font-bold", headingSizes[level - 1]) },
+         {
+            id: slug,
+            style: { scrollMarginTop: "100px" },
+            className: cn("font-bold mb-4", headingSizes[level - 1]),
+         },
          [
             React.createElement("a", {
                href: `#${slug}`,
@@ -81,7 +85,10 @@ export const components: MDXComponents = {
          </Table>
       );
    },
-   p: (props) => <p className="text-base" {...props} />,
+   p: (props) => <p className="text-foreground-500 mb-8" {...props} />,
+   strong: (props) => (
+      <strong className="font-semibold text-foreground" {...props} />
+   ),
    a: (props) => <Link {...props} />,
    ul: (props) => <ul className="list-disc" {...props} />,
    ol: (props) => <ol className="list-decimal" {...props} />,
@@ -89,7 +96,16 @@ export const components: MDXComponents = {
    blockquote: (props) => <Code as="blockquote" {...props} />,
    code: (props) => {
       const lang = props.className?.replace(/language-/, "");
-      return <CodeBlock code={props.children} lang={lang} {...props} />;
+      let content = props.children as string;
+      let filename = content.split("\n").find((s) => s.startsWith("//! "));
+      if (filename) {
+         content = content.replace(filename + "\n", "");
+         filename = filename.replace("//! ", "");
+      }
+
+      return (
+         <CodeBlock filename={filename} code={content} lang={lang} {...props} />
+      );
    },
 };
 

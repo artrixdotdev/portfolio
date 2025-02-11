@@ -8,20 +8,25 @@ import { Fragment } from "react";
 import { jsx, jsxs } from "react/jsx-runtime";
 import { codeToHast } from "shiki";
 import { transformerNotationDiff } from "@shikijs/transformers";
-import { cn } from "@heroui/react";
+import { Button, cn } from "@heroui/react";
+import { Copy } from "lucide-react";
+import { CopyCode } from "./copy-code";
+import { CodeIcon } from "./code-icon";
 
 export async function CodeBlock({
    code,
    lang,
+   filename,
    themes = {
       dark: "material-theme-ocean",
-      light: "github-light",
+      light: "material-theme-lighter",
    },
 }: Omit<CodeBlockProps, "initial"> & {
    themes: Record<"light" | "dark", BundledTheme>;
+   filename: string | null;
 }) {
    const out = await codeToHast(code, {
-      lang: lang,
+      lang,
       defaultColor: false,
       themes,
       transformers: [
@@ -37,7 +42,32 @@ export async function CodeBlock({
       jsxs,
       components: {
          pre: ({ className, ...props }) => (
-            <pre className={cn("w-full", className)} {...props} />
+            <div className="relative flex flex-col border border-default mb-8 shadow-xl rounded-md">
+               <div className="flex items-center pl-6 justify-between bg-content2 text-content2-foreground border-b border-default-300 w-full h-12">
+                  <div className="flex items-center gap-2">
+                     <span className="bg-danger-500 rounded-full w-4 h-4" />
+                     <span className="bg-success-500 rounded-full w-4 h-4" />
+                     <span className="bg-warning-500 rounded-full w-4 h-4" />
+                     <span className="text-sm inline-flex gap-1 font-semibold text-foreground-400">
+                        <CodeIcon filename={filename} />
+                        {filename || lang}
+                     </span>
+                  </div>
+                  <CopyCode
+                     code={code.replaceAll(/\/\/ \[!code.*?\]\n?/g, "")}
+                  />
+               </div>
+               <pre
+                  className={cn(
+                     className,
+                     "w-full transition-colors overflow-x-auto p-6",
+                  )}
+                  {...props}
+               />
+            </div>
+         ),
+         code: ({ className, ...props }) => (
+            <code className={cn(className, "w-max")} {...props} />
          ),
       },
    }) as JSX.Element;

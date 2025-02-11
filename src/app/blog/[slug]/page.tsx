@@ -2,6 +2,9 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { formatDate, getBlogPosts } from "@/lib/blog";
 import { baseUrl } from "@/app/sitemap";
+import { Clock } from "lucide-react";
+import { Avatar } from "@heroui/react";
+import Image from "next/image";
 
 export async function generateStaticParams() {
    let posts = getBlogPosts();
@@ -17,18 +20,18 @@ export async function generateMetadata({
    params: { slug: string };
 }) {
    const { slug } = await params;
-   let post = getBlogPosts().find((post) => post.slug === slug);
+   const post = getBlogPosts().find((post) => post.slug === slug);
    if (!post) {
       return null;
    }
 
-   let {
+   const {
       title,
       publishedAt: publishedTime,
       summary: description,
       image,
    } = post.metadata;
-   let ogImage = image
+   const ogImage = image
       ? image
       : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
 
@@ -58,12 +61,15 @@ export async function generateMetadata({
 
 export default async function Blog({ params }: { params: { slug: string } }) {
    const { slug } = await params;
-   let post = getBlogPosts().find((post) => post.slug === slug);
+   const post = getBlogPosts().find((post) => post.slug === slug);
 
    if (!post) {
       notFound();
    }
 
+   const ogImage = post.metadata.image
+      ? post?.metadata.image
+      : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}`;
    return (
       <section>
          <script
@@ -77,10 +83,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
                   datePublished: post.metadata.publishedAt,
                   dateModified: post.metadata.publishedAt,
                   description: post.metadata.summary,
-                  image: post.metadata.image
-                     ? `${baseUrl}${post.metadata.image}`
-                     : `/og?title=${encodeURIComponent(post.metadata.title)}`,
-                  url: `${baseUrl}/blog/${post.slug}`,
+                  image: ogImage,
                   author: {
                      "@type": "Person",
                      name: "Artrix",
@@ -88,15 +91,42 @@ export default async function Blog({ params }: { params: { slug: string } }) {
                }),
             }}
          />
-         <h1 className="title font-semibold text-2xl tracking-tighter">
+         <h1 className="font-semibold text-5xl tracking-tighter">
             {post.metadata.title}
          </h1>
          <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-            <p className="text-sm text-default-200">
-               {formatDate(post.metadata.publishedAt)}
-            </p>
+            <div className="flex gap-2 items-center justify-center">
+               <Avatar
+                  src="https://avatars.githubusercontent.com/u/39530102?s=40&v=4"
+                  size="sm"
+                  alt="Artrix"
+                  className="border border-default-300"
+               />
+               <div className="flex flex-col gap-0.5">
+                  <p className="font-semibold">Artrix</p>
+                  <p className="text-sm text-foreground-500">
+                     <span className="inline-flex gap-1 items-center justify-center">
+                        <Clock className="w-3 h-3" />
+                        <span>{post.readTime}</span>
+                     </span>{" "}
+                     | {formatDate(post.metadata.publishedAt)}
+                  </p>
+               </div>
+            </div>
          </div>
-         <article>
+         <img
+            src={ogImage}
+            alt={post.metadata.title}
+            width={1200}
+            height={630}
+            className="rounded-md mb-20 shadow-2xl"
+         />
+         <article
+            style={{
+               fontSize: "20px",
+               lineHeight: "28px",
+            }}
+         >
             <CustomMDX source={post.content} />
          </article>
       </section>

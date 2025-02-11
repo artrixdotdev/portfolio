@@ -45,6 +45,7 @@ function getMDXData(dir: string) {
          metadata,
          slug,
          content,
+         readTime: readTime(content),
       };
    });
 }
@@ -87,4 +88,25 @@ export function formatDate(date: string, includeRelative = false) {
    }
 
    return `${fullDate} (${formattedDate})`;
+}
+/**
+ * Read time in minutes, hours, or seconds
+ */
+/**
+ * Read time in minutes, hours, or seconds
+ */
+export function readTime(content: string): string {
+   let words = content.replace(/[^a-zA-Z0-9\s]/g, "").split(/\s+/);
+   let time = 0;
+
+   for (let word of words) {
+      if (word.length < 3) continue;
+      if (/^(a|an|the|in|and)$/i.test(word) || word.length < 2) {
+         time += 1;
+      }
+   }
+
+   if (time >= 3600) return `${Math.floor(time / 3600)}h`;
+   if (time >= 60) return `${Math.floor(time / 60)}m`;
+   return `${time}s`;
 }

@@ -48,8 +48,9 @@ export async function CodeBlock({
       jsxs,
       components: {
          pre: ({ className, ...props }) => (
-            <div className="relative flex flex-col border border-default mb-8 shadow-xl rounded-lg">
-               <div className="flex items-center pl-6 justify-between bg-content2 text-content2-foreground border-b border-default-300 w-full h-12">
+            <div className="relative flex flex-col border bg-transparent border-default mb-8 shadow-xl rounded-lg">
+               {/* Top bar */}
+               <div className="flex items-center pl-6 justify-between bg-content2 text-content2-foreground rounded-t-lg border-b border-default-300 w-full h-12">
                   <div className="flex items-center gap-2">
                      <span className="bg-danger-500 rounded-full w-4 h-4" />
                      <span className="bg-warning-500 rounded-full w-4 h-4" />
@@ -66,10 +67,12 @@ export async function CodeBlock({
                      )}
                   />
                </div>
+
+               {/* Code block */}
                <pre
                   className={cn(
                      className,
-                     "w-full transition-colors overflow-x-auto p-6",
+                     "w-full transition-colors overflow-x-auto p-6 rounded-b-lg",
                   )}
                   {...props}
                />

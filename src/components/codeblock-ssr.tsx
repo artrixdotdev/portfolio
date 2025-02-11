@@ -48,17 +48,17 @@ export async function CodeBlock({
       jsxs,
       components: {
          pre: ({ className, ...props }) => (
-            <div className="relative flex flex-col border border-default mb-8 shadow-xl rounded-md">
+            <div className="relative flex flex-col border border-default mb-8 shadow-xl rounded-lg">
                <div className="flex items-center pl-6 justify-between bg-content2 text-content2-foreground border-b border-default-300 w-full h-12">
                   <div className="flex items-center gap-2">
                      <span className="bg-danger-500 rounded-full w-4 h-4" />
                      <span className="bg-success-500 rounded-full w-4 h-4" />
                      <span className="bg-warning-500 rounded-full w-4 h-4" />
-                     <span className="text-sm inline-flex gap-1 font-semibold text-foreground-400">
-                        <CodeIcon filename={filename} />
-                        {filename || lang}
-                     </span>
                   </div>
+                  <span className="text-sm inline-flex font-semibold items-center justify-center gap-2 text-foreground-400">
+                     <CodeIcon filename={filename} />
+                     {filename || lang}
+                  </span>
                   <CopyCode
                      code={removeNegativeDiffs(code).replaceAll(
                         /\/\/ \[!code.*?\]\n?/g,

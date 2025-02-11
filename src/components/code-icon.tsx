@@ -2,13 +2,22 @@
 import { type ManifestConfig, generateManifest } from "material-icon-theme";
 import { useMemo, useState } from "react";
 import Image from "next/image";
+import { useTheme } from "next-themes";
 
 export const CodeIcon: React.FC<{ filename: string | null }> = ({
    filename,
 }) => {
    if (!filename) return null;
    const config: ManifestConfig = {};
-   const manifest = useMemo(() => generateManifest(config), []);
+   const { theme } = useTheme();
+   const manifest = useMemo(
+      () =>
+         theme === "light"
+            ? generateManifest(config).light
+            : generateManifest(config),
+      [theme],
+   );
+   if (!manifest) return null;
    const [icon, setIcon] = useState<{ src: string } | undefined>();
    if (filename && manifest.fileNames && manifest.fileNames[filename]) {
       const image = manifest.fileNames[filename];

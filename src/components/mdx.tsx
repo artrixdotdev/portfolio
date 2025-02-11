@@ -89,7 +89,15 @@ export const components: MDXComponents = {
    strong: (props) => (
       <strong className="font-semibold text-foreground" {...props} />
    ),
-   a: (props) => <Link {...props} />,
+   a: (props) => (
+      <Link
+         style={{
+            fontSize: "20px",
+            lineHeight: "28px",
+         }}
+         {...props}
+      />
+   ),
    ul: (props) => <ul className="list-disc" {...props} />,
    ol: (props) => <ol className="list-decimal" {...props} />,
    li: (props) => <li className="ml-4" {...props} />,

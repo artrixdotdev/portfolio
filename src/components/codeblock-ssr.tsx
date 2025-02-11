@@ -52,8 +52,8 @@ export async function CodeBlock({
                <div className="flex items-center pl-6 justify-between bg-content2 text-content2-foreground border-b border-default-300 w-full h-12">
                   <div className="flex items-center gap-2">
                      <span className="bg-danger-500 rounded-full w-4 h-4" />
-                     <span className="bg-success-500 rounded-full w-4 h-4" />
                      <span className="bg-warning-500 rounded-full w-4 h-4" />
+                     <span className="bg-success-500 rounded-full w-4 h-4" />
                   </div>
                   <span className="text-sm inline-flex font-semibold items-center justify-center gap-2 text-foreground-400">
                      <CodeIcon filename={filename} />

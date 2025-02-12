@@ -1,38 +1,49 @@
-"use client";
 import { type ManifestConfig, generateManifest } from "material-icon-theme";
-import { useMemo, useState } from "react";
-import Image from "next/image";
-import { useTheme } from "next-themes";
 
-export const CodeIcon: React.FC<{ filename: string | null }> = ({
+type IconImport = { src: string };
+export const CodeIcon: React.FC<{ filename: string | null }> = async ({
    filename,
 }) => {
    if (!filename) return null;
    const config: ManifestConfig = {};
-   const { theme } = useTheme();
-   const manifest = useMemo(
-      () =>
-         theme === "light"
-            ? generateManifest(config).light
-            : generateManifest(config),
-      [theme],
-   );
+   const manifest = generateManifest(config);
    if (!manifest) return null;
-   const [icon, setIcon] = useState<{ src: string } | undefined>();
+   let icons: [IconImport, IconImport | null] | null = null;
+
    if (filename && manifest.fileNames && manifest.fileNames[filename]) {
       const image = manifest.fileNames[filename];
-      import(`material-icon-theme/icons/${image}.svg`).then((mod) => {
-         setIcon(mod.default);
-      });
+      const imageLight = manifest.light?.fileNames?.[filename];
+
+      icons = await Promise.all([
+         (await import(`material-icon-theme/icons/${image}.svg`).then(
+            (mod) => mod.default,
+         )) as Promise<IconImport>,
+         (imageLight
+            ? await import(`material-icon-theme/icons/${imageLight}.svg`).then(
+                 (mod) => mod.default,
+              )
+            : async () => null) as Promise<IconImport | null>,
+      ]);
+   } else {
+      return null;
    }
-   if (!icon) return null;
+
+   if (!icons) return null;
+   let [darkIcon, lightIcon] = icons;
    return (
-      <Image
-         src={icon.src}
-         width="32"
-         height="32"
-         alt={filename ?? "unknown" + " file icon"}
-         className="w-6 h-6"
-      />
+      <picture>
+         {lightIcon && (
+            <img
+               src={lightIcon.src}
+               className="w-6 h-6 dark:hidden"
+               alt={filename ?? "unknown" + " file icon light"}
+            />
+         )}
+         <img
+            src={darkIcon.src}
+            alt={filename ?? "unknown" + " file icon"}
+            className="w-6 h-6 hidden dark:block"
+         />
+      </picture>
    );
 };

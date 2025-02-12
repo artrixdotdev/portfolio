@@ -6,6 +6,7 @@ type Metadata = {
    publishedAt: string;
    summary: string;
    image?: string;
+   tags?: string[];
 };
 
 function parseFrontmatter(fileContent: string) {
@@ -17,10 +18,13 @@ function parseFrontmatter(fileContent: string) {
    let metadata: Partial<Metadata> = {};
 
    frontMatterLines.forEach((line) => {
-      let [key, ...valueArr] = line.split(": ");
+      const [_key, ...valueArr] = line.split(": ");
       let value = valueArr.join(": ").trim();
       value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-      metadata[key.trim() as keyof Metadata] = value;
+      let key = _key.trim() as keyof Metadata;
+      metadata[key] = (
+         key === "tags" ? value.split(",").map((tag) => tag.trim()) : value
+      ) as string & string[];
    });
 
    return { metadata: metadata as Metadata, content };

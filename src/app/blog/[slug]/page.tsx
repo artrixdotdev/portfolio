@@ -3,8 +3,9 @@ import { CustomMDX } from "@/components/mdx";
 import { formatDate, getBlogPosts } from "@/lib/blog";
 import { baseUrl } from "@/app/sitemap";
 import { Clock } from "lucide-react";
-import { Avatar } from "@heroui/react";
+import { Avatar, Chip } from "@heroui/react";
 import Image from "next/image";
+import Link from "next/link";
 
 export async function generateStaticParams() {
    let posts = getBlogPosts();
@@ -113,6 +114,33 @@ export default async function Blog({ params }: { params: { slug: string } }) {
                   </p>
                </div>
             </div>
+            {post.metadata.tags && (
+               <ul className="flex gap-2 items-center">
+                  {post.metadata.tags.slice(0, 3).map((tag) => (
+                     <Chip
+                        key={tag}
+                        as={Link}
+                        size="sm"
+                        color="primary"
+                        variant="flat"
+                        href={`/blog?tags=${tag}`}
+                     >
+                        {tag}
+                     </Chip>
+                  ))}
+                  {post.metadata.tags.length > 3 && (
+                     <Chip
+                        as="li"
+                        size="sm"
+                        color="primary"
+                        variant="flat"
+                        endContent
+                     >
+                        {post.metadata.tags.length - 3} more...
+                     </Chip>
+                  )}
+               </ul>
+            )}
          </div>
          <img
             src={ogImage}

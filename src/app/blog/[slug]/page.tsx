@@ -97,7 +97,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
          <div className="flex justify-between items-center mt-2 mb-8 text-sm">
             <div className="flex gap-2 items-center justify-center">
                <Avatar
-                  src="https://avatars.githubusercontent.com/u/39530102?s=40&v=4"
+                  src="/favicon.svg"
                   size="sm"
                   alt="Artrix"
                   className="border border-default-300"

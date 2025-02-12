@@ -38,7 +38,7 @@ html.dark pre span {
 }
 
 .diff::after {
-   content: " ";
+   content: " "; /* Half space */
 }
 
 .diff {

@@ -44,7 +44,7 @@ export function NavigationPill() {
    const { currentSectionIndex, sections } = useCurrentSection();
    const pathParts = pathname.split("/").filter(Boolean);
    const [isFooterVisible, setIsFooterVisible] = useState(false);
-   const { theme } = useTheme();
+   const { resolvedTheme: theme } = useTheme();
 
    useEffect(() => {
       // Create intersection observer for footer

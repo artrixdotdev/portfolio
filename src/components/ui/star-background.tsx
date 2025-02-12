@@ -34,7 +34,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
    maxTwinkleSpeed = 1,
    className,
 }) => {
-   const { theme } = useTheme();
+   const { resolvedTheme: theme } = useTheme();
    const [fillColor, setFillColor] = useState("");
 
    useEffect(() => {

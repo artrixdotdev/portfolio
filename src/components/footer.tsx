@@ -8,7 +8,8 @@ import { useTheme } from "next-themes";
 import { link } from "@heroui/react";
 
 export function Footer() {
-   const { setTheme, theme } = useTheme();
+   const { setTheme, resolvedTheme: theme } = useTheme();
+   console.log(theme);
    const socials = SITE_CONFIG.links;
 
    return (
@@ -41,9 +42,9 @@ export function Footer() {
                   classNames={{
                      thumb: "bg-background",
                      endContent: "fill-background stroke-background",
-                     wrapper: "!bg-foreground !ring-ring",
+                     wrapper: "!bg-foreground",
                   }}
-                  checked={theme === "dark"}
+                  isSelected={theme === "light"}
                   startContent={<SunIcon />}
                   endContent={<MoonIcon />}
                   onValueChange={(c) => setTheme(c ? "light" : "dark")}

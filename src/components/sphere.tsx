@@ -63,7 +63,7 @@ const Sphere = forwardRef<THREE.Group, { radius: number; color: string }>(
 );
 
 const OrbitingSystem: React.FC<OrbitingSpheresProps> = ({ objects }) => {
-   const { theme } = useTheme();
+   const { resolvedTheme: theme } = useTheme();
    const colors = semanticColors[theme as "dark" | "light"] as ThemeColors;
    const sphereColor = colors?.foreground[900] || "#000000";
 

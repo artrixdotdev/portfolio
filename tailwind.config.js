@@ -39,7 +39,7 @@ module.exports = {
          },
       },
    },
-   darkMode: ["selector", '[data-mode="dark"]', "class"],
+   darkMode: ["class"],
    plugins: [
       heroui({
          layout: {

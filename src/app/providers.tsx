@@ -25,7 +25,11 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
    return (
       <HeroUIProvider navigate={router.push}>
-         <NextThemesProvider attribute="data-mode" {...themeProps}>
+         <NextThemesProvider
+            enableSystem
+            attribute="data-theme"
+            {...themeProps}
+         >
             {children}
          </NextThemesProvider>
       </HeroUIProvider>

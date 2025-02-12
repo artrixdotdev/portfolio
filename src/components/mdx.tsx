@@ -103,6 +103,19 @@ export const components: MDXComponents = {
    li: (props) => <li className="ml-4" {...props} />,
    blockquote: (props) => <Code as="blockquote" {...props} />,
    code: (props) => {
+      if (!props.className && !props.children.includes("\n")) {
+         return (
+            <Code
+               size="sm"
+               style={{
+                  fontSize: "20px",
+                  //lineHeight: "28px",
+               }}
+               className="rounded-md"
+               {...props}
+            />
+         );
+      }
       const lang = props.className?.replace(/language-/, "");
       let content = props.children as string;
       let filename = content.split("\n").find((s) => s.startsWith("//! "));

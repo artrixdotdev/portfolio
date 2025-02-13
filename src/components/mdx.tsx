@@ -98,8 +98,8 @@ export const components: MDXComponents = {
          {...props}
       />
    ),
-   ul: (props) => <ul className="list-disc" {...props} />,
-   ol: (props) => <ol className="list-decimal" {...props} />,
+   ul: (props) => <ul className="list-disc mb-8" {...props} />,
+   ol: (props) => <ol className="list-decimal mb-8" {...props} />,
    li: (props) => <li className="ml-4" {...props} />,
    blockquote: (props) => <Code as="blockquote" {...props} />,
    code: (props) => {
